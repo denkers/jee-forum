@@ -1,8 +1,9 @@
 CREATE TABLE users
 (
 	username VARCHAR(16) NOT NULL PRIMARY KEY,
-	password varchar(255) NOT NULL,
-	email varchar(100) NOT NULL,
-	picture varchar(255),
+	password VARCHAR(255) NOT NULL,
+	email VARCHAR(100) NOT NULL,
+	picture VARCHAR(255),
+	register_date DATETIME DEFAULT CURRENT_TIMESTAMP,
 	acc_type SMALLINT DEFAULT 0
 );
