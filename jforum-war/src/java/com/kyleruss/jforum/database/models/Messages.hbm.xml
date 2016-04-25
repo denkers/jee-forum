@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.kyleruss.jforum.database.models.Messages" table="messages" catalog="jforum" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usersByFromUser" class="com.kyleruss.jforum.database.models.Users" fetch="select">
+            <column name="from_user" length="16" not-null="true" />
+        </many-to-one>
+        <many-to-one name="usersByToUser" class="com.kyleruss.jforum.database.models.Users" fetch="select">
+            <column name="to_user" length="16" not-null="true" />
+        </many-to-one>
+        <property name="sentDate" type="timestamp">
+            <column name="sent_date" length="19" />
+        </property>
+        <property name="subject" type="string">
+            <column name="subject" length="50" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="1500" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

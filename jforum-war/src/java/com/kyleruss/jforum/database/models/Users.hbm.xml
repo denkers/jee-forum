@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.kyleruss.jforum.database.models.Users" table="users" catalog="jforum" optimistic-lock="version">
+        <id name="username" type="string">
+            <column name="username" length="16" />
+            <generator class="assigned" />
+        </id>
+        <property name="password" type="string">
+            <column name="password" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="picture" type="string">
+            <column name="picture" />
+        </property>
+        <property name="registerDate" type="timestamp">
+            <column name="register_date" length="19" />
+        </property>
+        <property name="accType" type="java.lang.Short">
+            <column name="acc_type" />
+        </property>
+        <set name="messagesesForFromUser" table="messages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="from_user" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Messages" />
+        </set>
+        <set name="postses" table="posts" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="posted_by" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Posts" />
+        </set>
+        <set name="messagesesForToUser" table="messages" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="to_user" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Messages" />
+        </set>
+        <set name="friendsesForFriendB" table="friends" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="friend_b" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Friends" />
+        </set>
+        <set name="friendsesForFriendA" table="friends" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="friend_a" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Friends" />
+        </set>
+        <set name="threadses" table="threads" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="created_by" length="16" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Threads" />
+        </set>
+    </class>
+</hibernate-mapping>

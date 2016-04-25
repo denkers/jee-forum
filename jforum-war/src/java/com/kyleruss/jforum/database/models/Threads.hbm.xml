@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.kyleruss.jforum.database.models.Threads" table="threads" catalog="jforum" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="categories" class="com.kyleruss.jforum.database.models.Categories" fetch="select">
+            <column name="category_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="com.kyleruss.jforum.database.models.Users" fetch="select">
+            <column name="created_by" length="16" not-null="true" />
+        </many-to-one>
+        <property name="dateCreated" type="timestamp">
+            <column name="date_created" length="19" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="50" not-null="true" />
+        </property>
+        <property name="content" type="string">
+            <column name="content" length="1500" not-null="true" />
+        </property>
+        <set name="postses" table="posts" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="thread_id" not-null="true" />
+            </key>
+            <one-to-many class="com.kyleruss.jforum.database.models.Posts" />
+        </set>
+    </class>
+</hibernate-mapping>
