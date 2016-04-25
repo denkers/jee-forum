@@ -9,10 +9,6 @@
                 <library dirs="100">
                     <file>${reference.jforum-ejb.dist}</file>
                 </library>
-                <library dirs="200">
-                    <file>${libs.hibernate4-support.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
