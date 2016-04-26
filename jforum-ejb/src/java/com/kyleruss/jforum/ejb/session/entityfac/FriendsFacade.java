@@ -1,32 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//=========================================
+//  KYLE RUSSELL
+//  AUT UNIVERSITY 2016
+//  https://github.com/denkers/jforum
+//=========================================
+
 package com.kyleruss.jforum.ejb.session.entityfac;
 
 import com.kyleruss.jforum.ejb.entity.Friends;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-/**
- *
- * @author denker
- */
 @Stateless
-public class FriendsFacade extends AbstractFacade<Friends> {
-
+@LocalBean
+public class FriendsFacade extends AbstractFacade<Friends> 
+{
     @PersistenceContext(unitName = "jforum-ejbPU")
     private EntityManager em;
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
-    public FriendsFacade() {
+    
+    public FriendsFacade() 
+    {
         super(Friends.class);
     }
-    
+
+    @Override
+    protected EntityManager getEntityManager() 
+    {
+        return em;
+    }
 }
