@@ -8,3 +8,13 @@ body
 {
     text-align:center;
 }
+
+#register-panel .panel-body
+{
+    padding:50px;
+}
+
+#register-form .row
+{
+    padding-bottom:20px;
+}
