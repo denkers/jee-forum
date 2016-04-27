@@ -6,7 +6,10 @@
 
 package com.kyleruss.jforum.user;
 
+import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import java.io.IOException;
+import java.util.Map.Entry;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/user/login"})
 public class LoginServlet extends HttpServlet 
 {
+    @EJB
+    private UsersFacade usersBean;
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -41,6 +47,8 @@ public class LoginServlet extends HttpServlet
     {
         String username     =   request.getParameter("login_username");
         String password     =   request.getParameter("login_password");
-        System.out.println(username + " " + password);
+        
+        Entry<Boolean, String> result   =   usersBean.loginUser(username, password);
+        System.out.println("result: " + result.getKey() + " response: " + result.getValue());
     }
 }

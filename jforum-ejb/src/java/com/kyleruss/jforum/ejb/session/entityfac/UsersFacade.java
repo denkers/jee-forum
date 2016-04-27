@@ -38,16 +38,17 @@ public class UsersFacade extends AbstractFacade<Users>
         boolean result  =   false;
         String response;
         
-        if(find(username) != null)
-            response    =   "Account already exists";
-        
-        else if(!ValidationUtils.isNotNull(username, password, rePassword, email)
+        if(!ValidationUtils.isNotNull(username, password, rePassword, email)
         ||  !ValidationUtils.isInRange(username, 4, 16)
         ||  !ValidationUtils.isInRange(password, 6, 16)
         ||  !ValidationUtils.isAlphanumeric(username, password))
         {
             response   =    "Invalid input";
         }
+        
+        else if(find(username) != null)
+            response    =   "Account already exists";
+        
         
         else if(!password.equals(rePassword))
             response    =   "Passwords don't match";
@@ -58,6 +59,33 @@ public class UsersFacade extends AbstractFacade<Users>
             create(user);
             result      =   em.contains(user);
             response    =   result? "Successfully created account" : "Failed to create account";
+        }
+        
+        return new SimpleEntry<>(result, response);
+    }
+    
+    public Entry<Boolean, String> loginUser(String username, String password)
+    {
+        boolean result  =   false;
+        String response;
+        
+        
+        if(!ValidationUtils.isNotNull(username, password)||  !ValidationUtils.isInRange(username, 4, 16) ||  !ValidationUtils.isInRange(password, 6, 16)   ||  !ValidationUtils.isAlphanumeric(username, password))
+            response    =   "Invalid input";
+        else
+        {
+            Users user  =   find(username);
+            if(user == null)
+                response = "Account not found";
+            
+            else if(!user.getPassword().equals(password))
+                response = "Invalid password";
+            
+            else
+            {
+                response    =   "Successfully logged in";
+                result      =   true;
+            }
         }
         
         return new SimpleEntry<>(result, response);
