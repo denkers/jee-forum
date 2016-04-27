@@ -33,10 +33,11 @@
                 </div>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Login</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">About</a></li>
+                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Forum</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 </ul>
             </div>
         </nav>
@@ -51,7 +52,7 @@
         <nav id="footer-nav" class="nav navbar-default navbar-fixed-bottom">
             <div class="row center-block">
                 <div class="container col-md-10 col-md-offset-1">
-                    <h4>Kyle Russell 2016</h4>
+                    <h4><span class="glyphicon glyphicon-copyright-mark"></span> Kyle Russell 2016</h4>
                 </div>
             </div> 
         </nav>
