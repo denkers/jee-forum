@@ -69,7 +69,7 @@
                                 <%-- CONTROLS --%>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</button>
-                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Register</button>
+                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Register</button>
                                 </div>
                             </form>
                         </div>
