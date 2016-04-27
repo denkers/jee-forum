@@ -8,5 +8,6 @@
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
 <tag:master pageTitle="Home">
-    <h3>Hello!</h3>
+    <jsp:attribute name="content">
+    </jsp:attribute>
 </tag:master>
