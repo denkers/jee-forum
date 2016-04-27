@@ -9,6 +9,7 @@
 <%@attribute name="content" fragment="true" %>
 <%@attribute name="scripts" fragment="true" %>
 <%@attribute name="styles" fragment="true" %>
+<%@attribute name="navIndex" required="true" %>
 
 <!DOCTYPE html>
 <html>
@@ -33,15 +34,16 @@
                 </div>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-comment"></span> Forum</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+                    <li class="${navIndex == 0? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    <li class="${navIndex == 1? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-comment"></span> Forum</a></li>
+                    <li class="${navIndex == 2? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
+                    <li class="${navIndex == 3? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
+                    <li class="${navIndex == 4? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 </ul>
             </div>
         </nav>
         
+        <%-- CONTENT --%>
         <div class="row center-block">
             <div class="container col-md-10 col-md-offset-1">
                 <jsp:invoke fragment="content" />            
