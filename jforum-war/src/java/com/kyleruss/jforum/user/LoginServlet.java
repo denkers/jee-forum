@@ -39,5 +39,8 @@ public class LoginServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String username     =   request.getParameter("login_username");
+        String password     =   request.getParameter("login_password");
+        System.out.println(username + " " + password);
     }
 }

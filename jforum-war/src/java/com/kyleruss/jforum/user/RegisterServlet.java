@@ -6,7 +6,10 @@
 
 package com.kyleruss.jforum.user;
 
+import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import java.io.IOException;
+import java.util.Map.Entry;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 public class RegisterServlet extends HttpServlet 
 {
 
+    @EJB
+    private UsersFacade usersBean;
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -40,5 +46,12 @@ public class RegisterServlet extends HttpServlet
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String username     =   request.getParameter("register_username");
+        String password     =   request.getParameter("register_password");
+        String rePassword   =   request.getParameter("register_re_password");
+        String email        =   request.getParameter("register_email");
+        
+        Entry<Boolean, String> result   =   usersBean.createUserAccount(username, password, rePassword, email);
+        System.out.println("Result: " + result.getKey() + " response: " + result.getValue());
     }
 }
