@@ -20,6 +20,14 @@
                             </h2>
                         </div>
                         
+                        <c:if test="${registerResult != null}">
+                            <div class="alert ${registerResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
+                                <button class="close" data-dismiss="alert">&times;</button>
+                                <strong>${registerResult.key? "Success!" : "Error!"}</strong>
+                                <p>${registerResult.value}</p>
+                            </div>
+                        </c:if>
+                            
                         <div id="register-container">
                             <form id="register-form" action="" method="POST">
                                 <%-- USERNAME FIELD --%>

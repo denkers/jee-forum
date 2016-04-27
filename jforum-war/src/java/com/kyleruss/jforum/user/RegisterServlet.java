@@ -52,6 +52,7 @@ public class RegisterServlet extends HttpServlet
         String email        =   request.getParameter("register_email");
         
         Entry<Boolean, String> result   =   usersBean.createUserAccount(username, password, rePassword, email);
-        System.out.println("Result: " + result.getKey() + " response: " + result.getValue());
+        request.setAttribute("registerResult", result);
+        request.getRequestDispatcher("/views/user/register.jsp").forward(request, response);
     }
 }

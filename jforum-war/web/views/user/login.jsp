@@ -4,6 +4,8 @@
   https://github.com/denkers/jforum
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.Map.Entry"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
@@ -19,6 +21,15 @@
                     </div>
                     
                     <div class="panel-body">
+                 
+                        <c:if test="${loginResult != null}">
+                            <div class="alert ${loginResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
+                                <button class="close" data-dismiss="alert">&times;</button>
+                                <strong>${loginResult.key? "Success!" : "Error!"}</strong>
+                                <p>${loginResult.value}</p>
+                            </div>
+                        </c:if>
+                        
                         <form id="login-form" action="" method="POST">
                             <%-- USERNAME FIELD --%>
                             <div class="input-group">

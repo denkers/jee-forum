@@ -49,6 +49,7 @@ public class LoginServlet extends HttpServlet
         String password     =   request.getParameter("login_password");
         
         Entry<Boolean, String> result   =   usersBean.loginUser(username, password);
-        System.out.println("result: " + result.getKey() + " response: " + result.getValue());
+        request.setAttribute("loginResult", result);
+        request.getRequestDispatcher("/views/user/login.jsp").forward(request, response);
     }
 }
