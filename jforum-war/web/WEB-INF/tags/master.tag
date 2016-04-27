@@ -17,7 +17,7 @@
         <title>JForum - ${pageTitle}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="assets/css/main.css">
+        <link rel="stylesheet" href="<%=request.getContextPath()%>/assets/css/main.css">
         <jsp:invoke fragment="styles" />
         
         <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
