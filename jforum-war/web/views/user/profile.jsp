@@ -13,6 +13,7 @@
         <div class="row center-block">
             <div class="container col-md-9 col-md-offset-2">
                 <div id="panel-container" class="row content">
+                    <%-- PROFILE NAVIGATION --%>
                     <div id="profile-navigation" class="col-md-2 panel panel-default no-float">
                         <div class="list-group">
                             <a href="#" class="list-group-item active">Profile</a>
@@ -21,6 +22,8 @@
                             <a href="#" class="list-group-item">Settings</a>
                         </div>
                     </div>
+                    
+                    <%-- PROFILE CONTENT --%>
                     <div id="profile-panel" class="panel panel-default col-md-10 no-float">
                         <div class="panel-body">
                             <div id="profile-info" class="col-md-2">
