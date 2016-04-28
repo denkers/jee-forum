@@ -42,6 +42,7 @@ public class ProfileServlet extends HttpServlet
     {
         String username     =   request.getParameter("userid");
         boolean ownProfile  =   activeUserBean.isActive() && activeUserBean.getActiveUser().getUsername().equals(username);   
+        Friends friendship  =   null;
         Users reqUser;
         
         if(ownProfile)
@@ -49,14 +50,12 @@ public class ProfileServlet extends HttpServlet
         else
             reqUser =   usersBean.find(username);
         
-        System.out.print(reqUser.getRegisterDate());
-
-        Users randomUser    =   usersBean.find("kyleruss2");
-        Friends friendship  =   friendsBean.getFriendship(randomUser, reqUser);
-        System.out.println("friendship: " + friendship);
+        if(!ownProfile)
+            friendship  =   friendsBean.getFriendship(activeUserBean.getActiveUser(), reqUser);
         
         request.setAttribute("profileUser", reqUser);
         request.setAttribute("isOwnProfile", ownProfile);
+        request.setAttribute("friendship", friendship);
         request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
     }
 }

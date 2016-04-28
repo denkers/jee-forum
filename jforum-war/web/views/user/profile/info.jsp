@@ -20,7 +20,20 @@
            <c:if test="${!isOwnProfile}">
                <div class="btn-group pull-right">
                    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                   <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> Add friend</a>
+                   
+                    <c:choose>
+                        <c:when test="${friendship != null}">
+                            <a href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove"></span> Remove friend
+                            </a>
+                        </c:when>
+
+                        <c:otherwise>
+                             <a href="#" class="btn btn-default">
+                                <span class="glyphicon glyphicon-plus"></span> Add friend
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
                </div>
                <br>
            </c:if>
