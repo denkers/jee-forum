@@ -14,7 +14,61 @@ body
     padding:50px;
 }
 
+#profile-panel .panel-body
+{
+    padding:35px;
+}
+
+#profile-panel
+{
+    border-left:0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius:0;
+    margin-bottom:0;
+    border-bottom:0;
+}
+
+#panel-container
+{
+    border-bottom: 1px solid #DDD;
+}
+
+.content
+{
+    overflow:hidden;
+}
+
+#profile-navigation
+{
+    padding:0;
+    height:100%;
+    padding-bottom:100%;
+    margin-bottom:-100%;
+}
+
+#profile-navigation .list-group-item
+{
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    border-left:0;
+    border-right:0;
+}
+
 #register-form .row
 {
     padding-bottom:20px;
+}
+
+#profile-mini-thumb
+{
+	width:128px;
+	height:128px;
+	display:inline-block;
+	outline:1px solid black;
+	background-size:cover;
+}
+
+#profile-picture-container
+{
+    text-align:center;
 }

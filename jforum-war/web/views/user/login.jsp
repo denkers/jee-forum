@@ -55,6 +55,7 @@
                                 <a href="${rootPath}/home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</a>
                                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span> Login</button>
                             </div>
+                            <h5>Need an account? <a href="${rootPath}/user/register">Register</a></h5>
                         </form>
                     </div>
                 </div>

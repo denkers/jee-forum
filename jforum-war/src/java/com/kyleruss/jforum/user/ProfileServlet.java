@@ -35,15 +35,17 @@ public class ProfileServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        String username =   request.getParameter("userid");
+        String username     =   request.getParameter("userid");
+        boolean ownProfile  =   activeUserBean.isActive() && activeUserBean.getActiveUser().getUsername().equals(username);   
         Users reqUser;
         
-        if(activeUserBean.isActive() && activeUserBean.getActiveUser().getUsername().equals(username))
+        if(ownProfile)
             reqUser =   activeUserBean.getActiveUser();
         else
             reqUser =   usersBean.find(username);
         
         request.setAttribute("profileUser", reqUser);
+        request.setAttribute("isOwnProfile", ownProfile);
         request.getRequestDispatcher("/views/user/profile.jsp").forward(request, response);
     }
 }

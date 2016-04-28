@@ -8,13 +8,31 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
-<tag:master pageTitle="Profile" navIndex="4">
+<tag:master pageTitle="${isOwnProfile? 'Your' : profileUser.username} Profile" navIndex="4">
     <jsp:attribute name="content">
         <div class="row center-block">
-            <div class="container col-md-7 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        
+            <div class="container col-md-9 col-md-offset-2">
+                <div id="panel-container" class="row content">
+                    <div id="profile-navigation" class="col-md-2 panel panel-default no-float">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">Profile</a>
+                            <a href="#" class="list-group-item">Friends</a>
+                            <a href="#" class="list-group-item">Messages</a>
+                            <a href="#" class="list-group-item">Settings</a>
+                        </div>
+                    </div>
+                    <div id="profile-panel" class="panel panel-default col-md-10 no-float">
+                        <div class="panel-body">
+                            <div id="profile-info" class="col-md-2">
+                                <div id="profile-picture-container">
+                                    <img src="${profileUser.picture}" id="profile-mini-thumb" />
+                                    <h4>${profileUser.username}</h4>
+                                </div>
+                            </div>
+
+                            <div id="profile-content" class="col-md-10">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
