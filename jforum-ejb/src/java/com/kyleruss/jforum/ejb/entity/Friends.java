@@ -27,9 +27,10 @@ public class Friends  implements java.io.Serializable
      private Users usersByFriendB;
      private Users usersByFriendA;
      private Date friendshipDate;
+     private Boolean confirmed;
 
     public Friends() {}
-	
+    
     public Friends(Users usersByFriendB, Users usersByFriendA)
     {
         this.usersByFriendB     =   usersByFriendB;
@@ -91,9 +92,13 @@ public class Friends  implements java.io.Serializable
         this.friendshipDate = friendshipDate;
     }
 
+    public boolean getConfirmed()
+    {
+        return confirmed;
+    }
 
-
-
+    public void setConfirmed(Boolean confirmed)
+    {
+        this.confirmed  =   confirmed;
+    }
 }
-
-

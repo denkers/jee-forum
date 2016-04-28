@@ -7,6 +7,8 @@
 package com.kyleruss.jforum.ejb.session.entityfac;
 
 import com.kyleruss.jforum.ejb.entity.Friends;
+import com.kyleruss.jforum.ejb.entity.Users;
+import java.util.Map.Entry;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,5 +30,10 @@ public class FriendsFacade extends AbstractFacade<Friends>
     protected EntityManager getEntityManager() 
     {
         return em;
+    }
+    
+    public Entry<Boolean, String> addFriend(Users me, Users friend)
+    {
+        
     }
 }
