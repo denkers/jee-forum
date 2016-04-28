@@ -58,7 +58,7 @@
                                 <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
                             </li>
                             <li class="${navIndex == 4? "active" : ""}">
-                                <a href="<%=request.getContextPath()%>/user/profile?userid=${sessionScope.activeUser.username}">
+                                <a href="<%=request.getContextPath()%>/user/profile/info?userid=${sessionScope.activeUser.username}">
                                     <span class="glyphicon glyphicon-user"></span> Profile
                                 </a>
                             </li>

@@ -14,7 +14,7 @@ body
     padding:50px;
 }
 
-#profile-panel .panel-body
+#profile-panel 
 {
     padding:35px;
 }
@@ -30,7 +30,8 @@ body
 
 #panel-container
 {
-    border-bottom: 1px solid #DDD;
+    border: 1px solid #DDD;
+    border-radius:4px;
 }
 
 .content
@@ -44,6 +45,12 @@ body
     height:100%;
     padding-bottom:100%;
     margin-bottom:-100%;
+    border-right:1px solid #DDD;
+}
+
+#profile-navigation .list-group
+{
+    margin-bottom:0;
 }
 
 #profile-navigation .list-group-item

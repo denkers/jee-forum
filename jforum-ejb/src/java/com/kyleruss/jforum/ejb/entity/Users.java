@@ -6,6 +6,7 @@
 
 package com.kyleruss.jforum.ejb.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -113,6 +114,12 @@ public class Users  implements java.io.Serializable
     public Date getRegisterDate() 
     {
         return this.registerDate;
+    }
+    
+    public String getFormattedRegisterDate()
+    {
+        SimpleDateFormat formatter   =   new SimpleDateFormat("d/m/y");
+        return formatter.format(registerDate);
     }
     
     public void setRegisterDate(Date registerDate) 

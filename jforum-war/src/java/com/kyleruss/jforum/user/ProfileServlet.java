@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ProfileServlet", urlPatterns = {"/user/profile"})
+@WebServlet(name = "ProfileServlet", urlPatterns = {"/user/profile/info", "/user/profile/messages", "/user/profile/settings", "/user/profile/friends"})
 public class ProfileServlet extends HttpServlet 
 {
     @EJB
@@ -44,8 +44,10 @@ public class ProfileServlet extends HttpServlet
         else
             reqUser =   usersBean.find(username);
         
+        System.out.print(reqUser.getRegisterDate());
+        
         request.setAttribute("profileUser", reqUser);
         request.setAttribute("isOwnProfile", ownProfile);
-        request.getRequestDispatcher("/views/user/profile.jsp").forward(request, response);
+        request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
     }
 }

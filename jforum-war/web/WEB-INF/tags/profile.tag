@@ -1,0 +1,43 @@
+<%-- 
+  KYLE RUSSELL
+  AUT UNIVERSITY 2016
+  https://github.com/denkers/jforum
+--%>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@attribute name="pageTitle" required="true" %>
+<%@attribute name="profileNavIndex" required="true" %>
+<%@attribute name="profileInfo" fragment="true" %>
+<%@attribute name="profileMessages" fragment="true" %>
+<%@attribute name="profileSettings" fragment="true" %>
+<%@attribute name="profileFriends" fragment="true" %>
+<%@attribute name="profileMenuNavIndex" required="true" %>
+
+<tag:master pageTitle="${pageTitle}" navIndex="${profileNavIndex}">
+    <jsp:attribute name="content">
+        <div class="row center-block">
+            <div class="container col-md-9 col-md-offset-2">
+                <div id="panel-container" class="row content">
+                    <%-- PROFILE NAVIGATION --%>
+                    <div id="profile-navigation" class="col-md-2 no-float">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 0? 'active' : ''}">Profile</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 1? 'active' : ''}">Friends</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}">Messages</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}">Settings</a>
+                        </div>
+                    </div>
+                    
+                    <%-- PROFILE CONTENT --%>
+                    <div id="profile-panel" class="col-md-10 no-float">
+                            <jsp:invoke fragment="profileInfo" />
+                            <jsp:invoke fragment="profileFriends" />
+                            <jsp:invoke fragment="profileMessages" />
+                            <jsp:invoke fragment="profileSettings" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jsp:attribute>
+</tag:master>
