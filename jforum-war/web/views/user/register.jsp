@@ -8,7 +8,7 @@
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<tag:master pageTitle="Register" navIndex="3">
+<tag:master pageTitle="Register" navIndex="2">
     <jsp:attribute name="content">
         <div class="row center-block">
             <div class="container col-md-7 col-md-offset-3">
@@ -38,7 +38,8 @@
                                     </div>
                                     
                                     <div class="col-md-7">
-                                        <input type="text" placeholder="Enter a 6-18 unique alphanumeric username" class="form-control" name="register_username" />
+                                        <input type="text" placeholder="Enter a 6-18 unique alphanumeric username" 
+                                               class="form-control" name="register_username" />
                                     </div>
                                 </div>
                                 
@@ -49,7 +50,8 @@
                                     </div>
                                     
                                     <div class="col-md-7">
-                                        <input type="password" placeholder="Enter a 4-16 alphanumeric password" class="form-control" name="register_password"/>
+                                        <input type="password" placeholder="Enter a 4-16 alphanumeric password" 
+                                               class="form-control" name="register_password"/>
                                     </div>
                                 </div>
                                 
@@ -60,7 +62,8 @@
                                     </div>
                                     
                                     <div class="col-md-7">
-                                        <input type="password" placeholder="Re-enter your password. Passwords must match" class="form-control" name="register_re_password"/>
+                                        <input type="password" placeholder="Re-enter your password. Passwords must match" 
+                                               class="form-control" name="register_re_password"/>
                                     </div>
                                 </div>
                                 
@@ -71,7 +74,8 @@
                                     </div>
                                     
                                     <div class="col-md-7">
-                                        <input type="text" placeholder="Enter a valid email address" class="form-control" name="register_email"/>
+                                        <input type="text" placeholder="Enter a valid email address" 
+                                               class="form-control" name="register_email"/>
                                     </div>
                                 </div>
                                 

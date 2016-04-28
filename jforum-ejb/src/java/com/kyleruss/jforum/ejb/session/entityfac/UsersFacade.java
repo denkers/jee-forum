@@ -64,9 +64,9 @@ public class UsersFacade extends AbstractFacade<Users>
         return new SimpleEntry<>(result, response);
     }
     
-    public Entry<Boolean, String> loginUser(String username, String password)
+    public Entry<Users, String> loginUser(String username, String password)
     {
-        boolean result  =   false;
+        Users user = null;
         String response;
         
         
@@ -74,20 +74,20 @@ public class UsersFacade extends AbstractFacade<Users>
             response    =   "Invalid input";
         else
         {
-            Users user  =   find(username);
+            user  =   find(username);
             if(user == null)
                 response = "Account not found";
             
             else if(!user.getPassword().equals(password))
-                response = "Invalid password";
+            {
+                response    =   "Invalid password";
+                user        =   null;
+            }
             
             else
-            {
                 response    =   "Successfully logged in";
-                result      =   true;
-            }
         }
         
-        return new SimpleEntry<>(result, response);
+        return new SimpleEntry<>(user, response);
     }
 }

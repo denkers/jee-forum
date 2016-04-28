@@ -6,11 +6,14 @@
 
 package com.kyleruss.jforum.user;
 
+import com.kyleruss.jforum.ejb.entity.Users;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Map.Entry;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,7 +39,10 @@ public class LoginServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
-        request.getRequestDispatcher("/views/user/login.jsp").forward(request, response);
+        if(!activeUserBean.isActive()) 
+            request.getRequestDispatcher("/views/user/login.jsp").forward(request, response);
+        else
+            response.sendRedirect(request.getContextPath() + "/home");
     }
 
     /**
@@ -52,8 +58,12 @@ public class LoginServlet extends HttpServlet
         String username     =   request.getParameter("login_username");
         String password     =   request.getParameter("login_password");
         
-        Entry<Boolean, String> result   =   usersBean.loginUser(username, password);
+        Entry<Users, String> attempt    =   usersBean.loginUser(username, password);
+        request.getSession().setAttribute("activeUser", attempt.getKey());
+        activeUserBean.setActiveUser(attempt.getKey());
+        
+        Entry<Boolean, String> result   =   new SimpleEntry(attempt.getKey() != null, attempt.getValue());   
         request.setAttribute("loginResult", result);
-        request.getRequestDispatcher("/views/user/login.jsp").forward(request, response);
+        doGet(request, response);
     }
 }

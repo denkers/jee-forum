@@ -10,6 +10,7 @@
 <%@attribute name="scripts" fragment="true" %>
 <%@attribute name="styles" fragment="true" %>
 <%@attribute name="navIndex" required="true" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -34,11 +35,31 @@
                 </div>
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="${navIndex == 0? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                    <li class="${navIndex == 1? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-comment"></span> Forum</a></li>
-                    <li class="${navIndex == 2? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
-                    <li class="${navIndex == 3? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-plus"></span> Register</a></li>
-                    <li class="${navIndex == 4? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+                    <li class="${navIndex == 0? "active" : ""}"><a href="<%=request.getContextPath()%>/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                    
+                    <c:choose>
+                        <c:when test="${sessionScope.activeUser == null}">
+                            <li class="${navIndex == 1? "active" : ""}">
+                                <a href="<%=request.getContextPath()%>/user/login"><span class="glyphicon glyphicon-lock"></span> Login</a>
+                            </li>
+                            <li class="${navIndex == 2? "active" : ""}">
+                                <a href="<%=request.getContextPath()%>/user/register"><span class="glyphicon glyphicon-plus"></span> Register</a>
+                            </li>
+                        </c:when>
+                            
+                        <c:otherwise>
+                            <li class="${navIndex == 3? "active" : ""}">
+                                <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+                            </li>
+                            <li class="${navIndex == 4? "active" : ""}"
+                                ><a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-user"></span> Profile</a>
+                            </li>
+                            <li class="${navIndex == 5? "active" : ""}">
+                                <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+                    <li class="${navIndex == 6? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 </ul>
             </div>
         </nav>

@@ -4,12 +4,12 @@
   https://github.com/denkers/jforum
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Map.Entry"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
-<tag:master pageTitle="Login" navIndex="3">
+<tag:master pageTitle="Login" navIndex="1">
     <jsp:attribute name="content">
         <div class="row center-block">
             <div class="container col-md-4 col-md-offset-4">
@@ -28,6 +28,11 @@
                                 <strong>${loginResult.key? "Success!" : "Error!"}</strong>
                                 <p>${loginResult.value}</p>
                             </div>
+                        </c:if>
+                        
+                        
+                        <c:if test="${sessionScope.activeUser != null}">
+                            <p>logged in</p>
                         </c:if>
                         
                         <form id="login-form" action="" method="POST">

@@ -6,6 +6,7 @@
 
 package com.kyleruss.jforum.user;
 
+import com.kyleruss.jforum.ejb.entity.Users;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;
@@ -20,12 +21,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/user/register"})
 public class RegisterServlet extends HttpServlet 
 {
-
     @EJB
     private UsersFacade usersBean;
     
     @EJB
-    private ActiveUserBean activeUserBean;
+    private ActiveUserBean activeUser;
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -36,6 +37,8 @@ public class RegisterServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        Users user  =   (Users) request.getSession().getAttribute("activeUser");
+        System.out.println(activeUser.getActiveUser());
         request.getRequestDispatcher("/views/user/register.jsp").forward(request, response);
     }
 
@@ -56,6 +59,6 @@ public class RegisterServlet extends HttpServlet
         
         Entry<Boolean, String> result   =   usersBean.createUserAccount(username, password, rePassword, email);
         request.setAttribute("registerResult", result);
-        request.getRequestDispatcher("/views/user/register.jsp").forward(request, response);
+        doGet(request, response);
     }
 }
