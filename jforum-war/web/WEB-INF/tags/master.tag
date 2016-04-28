@@ -27,6 +27,12 @@
     </head>
     
     <body>
+        
+        <%
+            String rootPath =   request.getContextPath();
+            request.setAttribute("rootPath", rootPath);
+        %>
+        
         <%-- HEAD NAVIGATION --%>
         <nav id="head-nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
@@ -55,7 +61,7 @@
                                 ><a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-user"></span> Profile</a>
                             </li>
                             <li class="${navIndex == 5? "active" : ""}">
-                                <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
+                                <a href="<%=request.getContextPath()%>/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
                             </li>
                         </c:otherwise>
                     </c:choose>

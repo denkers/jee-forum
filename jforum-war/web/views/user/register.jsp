@@ -14,78 +14,101 @@
             <div class="container col-md-7 col-md-offset-3">
                 <div id="register-panel" class="panel panel-default">
                     <div class="panel-body">
-                        <div class="page-header">
-                            <h2>Account registration
-                                <br>
-                                <small>Fill in the form below to create your account</small>
-                            </h2>
-                        </div>
+                        
+                        <c:if test="${registerResult == null || !registerResult.key}">
+                            <div class="page-header">
+                                <h2>Account registration
+                                    <br>
+                                    <small>Fill in the form below to create your account</small>
+                                </h2>
+                            </div>
+                        </c:if>
                         
                         <c:if test="${registerResult != null}">
                             <div class="alert ${registerResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
                                 <button class="close" data-dismiss="alert">&times;</button>
-                                <strong>${registerResult.key? "Success!" : "Error!"}</strong>
+                                <strong>
+                                    <span class="${registerResult.key?  "glyphicon glyphicon-ok-circle" : "glyphicon glyphicon-remove-circle"}"></span> 
+                                    ${registerResult.key? "Success!" : "Error!"}
+                                </strong>
                                 <p>${registerResult.value}</p>
                             </div>
-                        </c:if>
                             
-                        <div id="register-container">
-                            <form id="register-form" action="" method="POST">
-                                <%-- USERNAME FIELD --%>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h4>Username</h4>
-                                    </div>
-                                    
-                                    <div class="col-md-7">
-                                        <input type="text" placeholder="Enter a 6-18 unique alphanumeric username" 
-                                               class="form-control" name="register_username" />
-                                    </div>
-                                </div>
-                                
-                                <%-- PASSWORD FIELD --%>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h4>Password</h4>
-                                    </div>
-                                    
-                                    <div class="col-md-7">
-                                        <input type="password" placeholder="Enter a 4-16 alphanumeric password" 
-                                               class="form-control" name="register_password"/>
+                            <c:if test="${registerResult.key}">
+                                <div class="row center-block">
+                                    <div class="col-md-4 col-md-offset-4">
+                                        <div class="btn-group">
+                                            <a class="btn btn-default" href="${rootPath}/home">
+                                                <span class="glyphicon glyphicon-home"></span> Return home
+                                            </a>
+                                                <a href="${rootPath}/user/login" class="btn btn-primary">
+                                                    <span class="glyphicon glyphicon-lock"></span> Login
+                                                </a>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                                <%-- REPEAT-PASSWORD FIELD --%>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h4>Repeat password</h4>
+                            </c:if>
+                        </c:if>
+
+                        <c:if test="${registerResult == null || !registerResult.key}">
+                            <div id="register-container">
+                                <form id="register-form" action="" method="POST">
+                                    <%-- USERNAME FIELD --%>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4>Username</h4>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="text" placeholder="Enter a 6-18 unique alphanumeric username" 
+                                                   class="form-control" name="register_username" />
+                                        </div>
                                     </div>
-                                    
-                                    <div class="col-md-7">
-                                        <input type="password" placeholder="Re-enter your password. Passwords must match" 
-                                               class="form-control" name="register_re_password"/>
+
+                                    <%-- PASSWORD FIELD --%>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4>Password</h4>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="password" placeholder="Enter a 4-16 alphanumeric password" 
+                                                   class="form-control" name="register_password"/>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <%-- EMAIL FIELD --%>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <h4>Email</h4>
+
+                                    <%-- REPEAT-PASSWORD FIELD --%>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4>Repeat password</h4>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="password" placeholder="Re-enter your password. Passwords must match" 
+                                                   class="form-control" name="register_re_password"/>
+                                        </div>
                                     </div>
-                                    
-                                    <div class="col-md-7">
-                                        <input type="text" placeholder="Enter a valid email address" 
-                                               class="form-control" name="register_email"/>
+
+                                    <%-- EMAIL FIELD --%>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h4>Email</h4>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <input type="text" placeholder="Enter a valid email address" 
+                                                   class="form-control" name="register_email"/>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <%-- CONTROLS --%>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</button>
-                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Register</button>
-                                </div>
-                            </form>
-                        </div>
+
+                                    <%-- CONTROLS --%>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</button>
+                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </div>

@@ -23,9 +23,9 @@
                     <div class="panel-body">
                  
                         <c:if test="${loginResult != null}">
-                            <div class="alert ${loginResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
+                            <div class="alert alert-danger alert-dismissable fade in">
                                 <button class="close" data-dismiss="alert">&times;</button>
-                                <strong>${loginResult.key? "Success!" : "Error!"}</strong>
+                                <strong><span class="glyphicon glyphicon-remove-circle"></span> Error</strong>
                                 <p>${loginResult.value}</p>
                             </div>
                         </c:if>
@@ -52,7 +52,7 @@
                             <%-- CONTROLS --%>
                             <br>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</button>
+                                <a href="${rootPath}/home" class="btn btn-default"><span class="glyphicon glyphicon-home"></span> Return home</a>
                                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span> Login</button>
                             </div>
                         </form>
