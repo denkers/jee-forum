@@ -6,7 +6,9 @@
 
 package com.kyleruss.jforum.user;
 
+import com.kyleruss.jforum.ejb.entity.Friends;
 import com.kyleruss.jforum.ejb.entity.Users;
+import com.kyleruss.jforum.ejb.session.entityfac.FriendsFacade;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;
@@ -25,6 +27,9 @@ public class ProfileServlet extends HttpServlet
             
     @EJB
     private UsersFacade usersBean;
+    
+    @EJB
+    private FriendsFacade friendsBean;
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -45,6 +50,10 @@ public class ProfileServlet extends HttpServlet
             reqUser =   usersBean.find(username);
         
         System.out.print(reqUser.getRegisterDate());
+
+        Users randomUser    =   usersBean.find("kyleruss2");
+        Friends friendship  =   friendsBean.getFriendship(randomUser, reqUser);
+        System.out.println("friendship: " + friendship);
         
         request.setAttribute("profileUser", reqUser);
         request.setAttribute("isOwnProfile", ownProfile);
