@@ -7,6 +7,7 @@
 package com.kyleruss.jforum.user;
 
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
+import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;
 import java.util.Map.Entry;
 import javax.ejb.EJB;
@@ -21,6 +22,9 @@ public class LoginServlet extends HttpServlet
 {
     @EJB
     private UsersFacade usersBean;
+    
+    @EJB
+    private ActiveUserBean activeUserBean;
     
     /**
      * Handles the HTTP <code>GET</code> method.
