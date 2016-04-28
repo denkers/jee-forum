@@ -57,8 +57,10 @@
                             <li class="${navIndex == 3? "active" : ""}">
                                 <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
                             </li>
-                            <li class="${navIndex == 4? "active" : ""}"
-                                ><a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-user"></span> Profile</a>
+                            <li class="${navIndex == 4? "active" : ""}">
+                                <a href="<%=request.getContextPath()%>/user/profile?userid=${sessionScope.activeUser.username}">
+                                    <span class="glyphicon glyphicon-user"></span> Profile
+                                </a>
                             </li>
                             <li class="${navIndex == 5? "active" : ""}">
                                 <a href="<%=request.getContextPath()%>/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
