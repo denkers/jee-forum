@@ -6,7 +6,13 @@
 
 package com.kyleruss.jforum.base;
 
+import com.kyleruss.jforum.ejb.entity.Categories;
+import com.kyleruss.jforum.ejb.entity.Sections;
+import com.kyleruss.jforum.ejb.session.entityfac.SectionsFacade;
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "HomeServlet", urlPatterns = {"/home", "/error"})
 public class HomeServlet extends HttpServlet 
 {
+    @EJB
+    private SectionsFacade sectionsBean;
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -27,14 +36,24 @@ public class HomeServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        String nextPath =   null;
         String path     =   request.getServletPath();
+        
         if(path.equals("/home"))
-            nextPath    =   "/views/index.jsp";
+            getHome(request, response);
         
         else if(path.equals("/error"))
-            nextPath    =   "/views/error.jsp";
-        
-        if(nextPath != null) request.getRequestDispatcher(nextPath).forward(request, response);
+            getError(request, response);
+    }
+    
+    private void getError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        request.getRequestDispatcher("/views/error.jsp").forward(request, response);
+    }
+    
+    private void getHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        List<Sections> sections  =   sectionsBean.findAll();
+        request.setAttribute("sections", sections);
+        request.getRequestDispatcher("/views/index.jsp").forward(request, response);
     }
 }

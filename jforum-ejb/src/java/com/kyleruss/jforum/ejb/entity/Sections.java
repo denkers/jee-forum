@@ -6,8 +6,13 @@
 
 package com.kyleruss.jforum.ejb.entity;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,7 +20,12 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import org.hibernate.annotations.Sort;
+import org.hibernate.annotations.SortType;
 
 @Entity
 @Table(name="sections", catalog="jforum")
@@ -24,11 +34,12 @@ public class Sections  implements java.io.Serializable
      private Integer id;
      private String name;
      private String description;
-     private Set<Categories> categorieses = new HashSet();
+     private Date createdDate;
+     private List<Categories> categorieses = new ArrayList<>();
 
     public Sections() {}
 
-    public Sections(String name, String description, Set<Categories> categorieses) 
+    public Sections(String name, String description, List<Categories> categorieses) 
     {
        this.name            =   name;
        this.description     =   description;
@@ -70,14 +81,27 @@ public class Sections  implements java.io.Serializable
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="sections")
-    public Set<Categories> getCategorieses()
+    @Sort(type=SortType.NATURAL)
+    public List<Categories> getCategorieses()
     {
         return this.categorieses;
     }
     
-    public void setCategorieses(Set<Categories> categorieses) 
+    public void setCategorieses(List<Categories> categorieses) 
     {
         this.categorieses = categorieses;
+    }
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created_date", length=19)
+    public Date getCreatedDate()
+    {
+        return createdDate;
+    }
+    
+    public void setCreatedDate(Date createdDate)
+    {
+        this.createdDate    =   createdDate;
     }
 }
 

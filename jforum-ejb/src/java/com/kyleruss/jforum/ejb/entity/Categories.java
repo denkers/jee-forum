@@ -6,8 +6,10 @@
 
 package com.kyleruss.jforum.ejb.entity;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,16 +20,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="categories", catalog="jforum")
-public class Categories  implements java.io.Serializable 
+public class Categories  implements java.io.Serializable, Comparable<Categories>
 {
      private Integer id;
      private Sections sections;
      private String name;
      private String description;
-     private Set<Threads> threadses = new HashSet();
+     private Date createdDate;
+     private Set<Threads> threadses = new TreeSet();
 
     public Categories() {}
 	
@@ -99,6 +104,25 @@ public class Categories  implements java.io.Serializable
     public void setThreadses(Set<Threads> threadses)
     {
         this.threadses = threadses;
+    }
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="created_date", length=19)
+    public Date getCreatedDate()
+    {
+        return createdDate;
+    }
+    
+    public void setCreatedDate(Date createdDate)
+    {
+        this.createdDate    =   createdDate;
+    }
+
+
+    @Override
+    public int compareTo(Categories o)
+    {
+        return createdDate.compareTo(o.getCreatedDate());
     }
 }
 

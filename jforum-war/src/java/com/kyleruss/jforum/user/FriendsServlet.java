@@ -57,7 +57,7 @@ public class FriendsServlet extends HttpServlet
     private void processRemoveRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {    
         if(!activeUserBean.isActive())
-                response.sendRedirect(request.getContextPath() + "/home");
+            response.sendRedirect(request.getContextPath() + "/error");
         
         else
         {
