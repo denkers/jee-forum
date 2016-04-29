@@ -8,7 +8,8 @@
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
-<tag:profile profileNavIndex="4" pageTitle="${isOwnProfile? 'Your' : profileUser.username} Friends" profileMenuNavIndex="1" profileUserId="${profileUser.username}">
+<tag:profile profileNavIndex="4" pageTitle="${isOwnProfile? 'Your' : profileUser.username} Friends" profileMenuNavIndex="1" 
+             profileUserId="${profileUser.username}" isOwnProfile="${isOwnProfile}">
     <jsp:attribute name="profileFriends">
         
         <div class="page-header">

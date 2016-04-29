@@ -14,6 +14,7 @@
 <%@attribute name="profileFriends" fragment="true" %>
 <%@attribute name="profileMenuNavIndex" required="true" %>
 <%@attribute name="profileUserId" required="true" %>
+<%@attribute name="isOwnProfile" required="true" %>
 
 <tag:master pageTitle="${pageTitle}" navIndex="${profileNavIndex}">
     <jsp:attribute name="content">
@@ -29,12 +30,15 @@
                             <a href="${rootPath}/user/profile/friends?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 1? 'active' : ''}">
                                 <span class="glyphicon glyphicon-user"></span> Friends
                             </a>
-                            <a href="${rootPath}/user/profile/messages?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}">
-                                <span class="glyphicon glyphicon-envelope"></span> Messages
-                            </a>
-                            <a href="${rootPath}/user/profile/settings?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}">
-                                <span class="glyphicon glyphicon-cog"></span> Settings
-                            </a>
+                                
+                            <c:if test="${isOwnProfile}">
+                                <a href="${rootPath}/user/profile/messages?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}">
+                                    <span class="glyphicon glyphicon-envelope"></span> Messages
+                                </a>
+                                <a href="${rootPath}/user/profile/settings?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}">
+                                    <span class="glyphicon glyphicon-cog"></span> Settings
+                                </a>
+                            </c:if>
                         </div>
                     </div>
                     
