@@ -38,10 +38,7 @@ public class UsersFacade extends AbstractFacade<Users>
         boolean result  =   false;
         String response;
         
-        if(!ValidationUtils.isNotNull(username, password, rePassword, email)
-        ||  !ValidationUtils.isInRange(username, 4, 16)
-        ||  !ValidationUtils.isInRange(password, 6, 16)
-        ||  !ValidationUtils.isAlphanumeric(username, password))
+        if(!isValidInput(username, password, email) || rePassword == null)
         {
             response   =    "Invalid input";
         }
@@ -62,6 +59,21 @@ public class UsersFacade extends AbstractFacade<Users>
         }
         
         return new SimpleEntry<>(result, response);
+    }
+    
+    public void saveSettings(String email, String password, String picture, Users user)
+    {
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setPicture(picture);
+        edit(user);
+    }
+    
+    public boolean isValidInput(String username, String password, String email)
+    {
+        return  ValidationUtils.isNotNull(username, password, email)
+                && ValidationUtils.isInRange(username, 4, 16)
+                && ValidationUtils.isInRange(password, 6, 16);
     }
     
     public Entry<Users, String> loginUser(String username, String password)

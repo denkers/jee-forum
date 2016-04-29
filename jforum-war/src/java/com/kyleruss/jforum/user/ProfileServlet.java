@@ -11,8 +11,11 @@ import com.kyleruss.jforum.ejb.entity.Users;
 import com.kyleruss.jforum.ejb.session.entityfac.FriendsFacade;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
+import com.kyleruss.jforum.ejb.util.ValidationUtils;
 import java.io.IOException;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.List;
+import java.util.Map.Entry;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +23,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ProfileServlet", urlPatterns = {"/user/profile/info", "/user/profile/messages", "/user/profile/settings", "/user/profile/friends"})
+@WebServlet(name = "ProfileServlet", urlPatterns = 
+{   "/user/profile/info", 
+    "/user/profile/messages", 
+    "/user/profile/settings", 
+    "/user/profile/friends",
+    "/user/profile/settings/save"
+})
 public class ProfileServlet extends HttpServlet 
 {
     @EJB
@@ -95,5 +104,33 @@ public class ProfileServlet extends HttpServlet
     private void getProfileSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         request.getRequestDispatcher("/views/user/profile/settings.jsp").forward(request, response);
+    }
+    
+    private void processSettingsSave(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        String email        =   request.getParameter("settings_email");
+        String picture      =   request.getParameter("settings_picture");
+        String pass         =   request.getParameter("settings_password");
+        Entry<Boolean, String> result;
+        
+        if(pass != null && !ValidationUtils.isInRange(pass, 6, 16))
+            result  =   new SimpleEntry(false, "Invalid input");
+        
+        else
+        {
+            usersBean.saveSettings(email, pass, picture, activeUserBean.getActiveUser());
+            result  =   new SimpleEntry(true, "Account settings have been saved");
+        }
+        
+        request.setAttribute("settingsResult", result);
+        request.getRequestDispatcher("/views/user/profile/settings.jsp").forward(request, response);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        String path =   request.getServletPath();
+        if(path.equals("/user/profile/settings/save"))
+            processSettingsSave(request, response);
     }
 }

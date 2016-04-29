@@ -18,28 +18,41 @@
         
         <div class="row">
             <div class="col-md-8">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
-                    <input type="text" name="settings_email" class="form-control" placeholder="Email address" value="${sessionScope.activeUser.email}"/>
-                </div>
-
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span> Picture</span>
-                    <input type="text" name="settings_picture" class="form-control" placeholder="Display picture" value="${sessionScope.activeUser.picture}"/>
-                </div>
-
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> Password</span>
-                    <input type="password" name="settings_password" class="form-control" placeholder="Password" value="${sessionScope.activeUser.password}"/>
-                </div>
+                <c:if test="${settingsResult != null}">
+                   <div class="alert ${settingsResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
+                        <button class="close" data-dismiss="alert">&times;</button>
+                        <strong>
+                            <span class="${settingsResult.key?  "glyphicon glyphicon-ok-circle" : "glyphicon glyphicon-remove-circle"}"></span> 
+                            ${settingsResult.key? "Success!" : "Error!"}
+                        </strong>
+                        <p>${settingsResult.value}</p>
+                    </div>
+               </c:if>
                 
-                <br>
-                <div class="btn-group">
-                    <a class="btn btn-default" href="${rootPath}/home"><span class="glyphicon glyphicon-home"></span> Return to home</a>
-                    <button type="submit" class="btn btn-primary"><span class=" glyphicon glyphicon-ok"></span> Save settings</button>
-                </div>
+                <form action="${rootPath}/user/profile/settings/save" method="POST">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
+                        <input required type="text" name="settings_email" class="form-control" placeholder="Email address" value="${sessionScope.activeUser.email}"/>
+                    </div>
+
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-picture"></span> Picture</span>
+                        <input required type="text" name="settings_picture" class="form-control" placeholder="Display picture" value="${sessionScope.activeUser.picture}"/>
+                    </div>
+
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> Password</span>
+                        <input required type="password" name="settings_password" class="form-control" placeholder="Password" value="${sessionScope.activeUser.password}"/>
+                    </div>
+
+                    <br>
+                    <div class="btn-group">
+                        <a class="btn btn-default" href="${rootPath}/home"><span class="glyphicon glyphicon-home"></span> Return to home</a>
+                        <button type="submit" class="btn btn-primary"><span class=" glyphicon glyphicon-ok"></span> Save settings</button>
+                    </div>
+                </form>
             </div>
         </div>
     </jsp:attribute>
