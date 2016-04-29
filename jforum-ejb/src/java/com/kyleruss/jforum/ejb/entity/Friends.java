@@ -104,6 +104,14 @@ public class Friends  implements java.io.Serializable
     
     public boolean isFriends(Users user)
     {
-        //return usersByFriend
+        return usersByFriendA.equals(user) || usersByFriendB.equals(user);
+    }
+    
+    public Users getFriend(Users user)
+    {
+        if(usersByFriendA.equals(user))
+            return usersByFriendB;
+        
+        return usersByFriendA;
     }
 }

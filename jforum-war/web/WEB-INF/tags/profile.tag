@@ -22,10 +22,10 @@
                     <%-- PROFILE NAVIGATION --%>
                     <div id="profile-navigation" class="col-md-2 no-float">
                         <div class="list-group">
-                            <a href="#" class="list-group-item ${profileMenuNavIndex == 0? 'active' : ''}">Profile</a>
-                            <a href="#" class="list-group-item ${profileMenuNavIndex == 1? 'active' : ''}">Friends</a>
-                            <a href="#" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}">Messages</a>
-                            <a href="#" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}">Settings</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 0? 'active' : ''}"><span class="glyphicon glyphicon-info-sign"></span> Info</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 1? 'active' : ''}"><span class="glyphicon glyphicon-user"></span> Friends</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+                            <a href="#" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}"><span class="glyphicon glyphicon-cog"></span> Settings</a>
                         </div>
                     </div>
                     

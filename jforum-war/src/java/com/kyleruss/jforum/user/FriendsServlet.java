@@ -55,28 +55,34 @@ public class FriendsServlet extends HttpServlet
     }
     
     private void processRemoveRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-    {   Entry<Boolean, String> result;
-        try 
-        {
-            if(!activeUserBean.isActive())
+    {    
+        if(!activeUserBean.isActive())
                 response.sendRedirect(request.getContextPath() + "/home");
+        
+        else
+        {
+            Entry<Boolean, String> result;
             
-            else
+            try 
             {
                 int friendID        =   Integer.parseInt(request.getParameter("friendshipid"));
                 Friends friendship  =   friendsBean.find(friendID);
-                
-                //if(friendship == null)
+                Users user          =   activeUserBean.getActiveUser();
+
+                if(friendship == null || !friendship.isFriends(user))
+                    result  =   new SimpleEntry(false, "You are not friends");
+                else
+                    result  =   friendsBean.removeFriend(friendship);
             }
+
+            catch(NumberFormatException e)
+            {
+                result  =   new SimpleEntry(false, "Invalid input");
+            }
+
+            request.setAttribute("profileResult", result);
+            request.getRequestDispatcher("/user/profile/info").forward(request, response);
         }
-        
-        catch(NumberFormatException e)
-        {
-            result  =   new SimpleEntry(false, "Invalid input");
-        }
-        
-        
-        request.getRequestDispatcher("/user/profile/info").forward(request, response);
     }
     
     private void processAddRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

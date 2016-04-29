@@ -33,7 +33,7 @@
                    
                     <c:choose>
                         <c:when test="${friendship != null}">
-                            <a href="${rootPath}/user/profile/info/friends/remove?friendshipid=${friendship.id}" class="btn btn-default">
+                            <a href="${rootPath}/user/profile/info/friends/remove?userid=${profileUser.username}&friendshipid=${friendship.id}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove"></span> Remove friend
                             </a>
                         </c:when>
