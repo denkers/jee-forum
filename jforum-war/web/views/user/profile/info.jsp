@@ -19,14 +19,7 @@
        <div id="profile-content" class="col-md-10">
            <c:if test="${!isOwnProfile}">
                <c:if test="${profileResult != null}">
-                   <div class="alert ${profileResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
-                        <button class="close" data-dismiss="alert">&times;</button>
-                        <strong>
-                            <span class="${profileResult.key?  "glyphicon glyphicon-ok-circle" : "glyphicon glyphicon-remove-circle"}"></span> 
-                            ${profileResult.key? "Success!" : "Error!"}
-                        </strong>
-                        <p>${profileResult.value}</p>
-                    </div>
+                   <tag:result-alert resultStatus="${profileResult.key}" resultMessage="${profileResult.value}"></tag:result-alert>
                </c:if>
                <div class="btn-group pull-right">
                    <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>

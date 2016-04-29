@@ -25,13 +25,7 @@
                         </c:if>
                         
                         <c:if test="${registerResult != null}">
-                            <div class="alert ${registerResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
-                                <button class="close" data-dismiss="alert">&times;</button>
-                                <strong>
-                                    <span class="${registerResult.key?  "glyphicon glyphicon-ok-circle" : "glyphicon glyphicon-remove-circle"}"></span> 
-                                    ${registerResult.key? "Success!" : "Error!"}
-                                </strong>
-                                <p>${registerResult.value}</p>
+                                <tag:result-alert resultStatus="${registerResult.key}" resultMessage="${registerResult.value}"></tag:result-alert>
                             </div>
                             
                             <c:if test="${registerResult.key}">

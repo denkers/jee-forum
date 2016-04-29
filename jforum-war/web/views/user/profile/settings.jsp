@@ -19,14 +19,7 @@
         <div class="row">
             <div class="col-md-8">
                 <c:if test="${settingsResult != null}">
-                   <div class="alert ${settingsResult.key? "alert-success" : "alert-danger"} alert-dismissable fade in">
-                        <button class="close" data-dismiss="alert">&times;</button>
-                        <strong>
-                            <span class="${settingsResult.key?  "glyphicon glyphicon-ok-circle" : "glyphicon glyphicon-remove-circle"}"></span> 
-                            ${settingsResult.key? "Success!" : "Error!"}
-                        </strong>
-                        <p>${settingsResult.value}</p>
-                    </div>
+                    <tag:result-alert resultStatus="${settingsResult.key}" resultMessage="${settingsResult.value}"></tag:result-alert>
                </c:if>
                 
                 <form action="${rootPath}/user/profile/settings/save" method="POST">

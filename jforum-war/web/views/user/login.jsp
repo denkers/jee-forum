@@ -23,11 +23,7 @@
                     <div class="panel-body">
                  
                         <c:if test="${loginResult != null}">
-                            <div class="alert alert-danger alert-dismissable fade in">
-                                <button class="close" data-dismiss="alert">&times;</button>
-                                <strong><span class="glyphicon glyphicon-remove-circle"></span> Error</strong>
-                                <p>${loginResult.value}</p>
-                            </div>
+                            <tag:result-alert resultStatus="${loginResult.key}" resultMessage="${loginResult.value}"></tag:result-alert>
                         </c:if>
                         
                         
