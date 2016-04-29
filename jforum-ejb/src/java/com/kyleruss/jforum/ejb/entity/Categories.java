@@ -6,7 +6,9 @@
 
 package com.kyleruss.jforum.ejb.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.persistence.Column;
@@ -18,6 +20,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +34,7 @@ public class Categories  implements java.io.Serializable
      private String name;
      private String description;
      private Date createdDate;
-     private Set<Threads> threadses = new TreeSet();
+     private List<Threads> threadses = new ArrayList();
 
     public Categories() {}
 	
@@ -40,7 +43,7 @@ public class Categories  implements java.io.Serializable
         this.sections = sections;
     }
     
-    public Categories(Sections sections, String name, String description, Set threadses) 
+    public Categories(Sections sections, String name, String description, List<Threads> threadses) 
     {
        this.sections        =   sections;
        this.name            =   name;
@@ -95,12 +98,13 @@ public class Categories  implements java.io.Serializable
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="categories")
-    public Set<Threads> getThreadses() 
+    @OrderBy("dateCreated DESC")
+    public List<Threads> getThreadses() 
     {
         return this.threadses;
     }
     
-    public void setThreadses(Set<Threads> threadses)
+    public void setThreadses(List<Threads> threadses)
     {
         this.threadses = threadses;
     }

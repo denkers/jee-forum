@@ -105,3 +105,14 @@ body
     border:0;
     margin-bottom:0;
 }
+
+.no-thread-container
+{
+    padding:40px;
+    text-align:center;
+}
+
+.center-table-cell
+{
+    text-align:center;
+}
