@@ -74,7 +74,7 @@ public class ProfileServlet extends HttpServlet
             getProfileFriends(request, response, reqUser);
         
         else if(path.equals("/user/profile/settings"))
-            getProfileSettings(request, response);
+            getProfileSettings(request, response, reqUser);
     }
     
     private void getProfileInfo(HttpServletRequest request, HttpServletResponse response, boolean ownProfile, Users reqUser) 
@@ -89,24 +89,32 @@ public class ProfileServlet extends HttpServlet
         request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
     }
     
-    private void getProfileFriends(HttpServletRequest request, HttpServletResponse response, Users reqUser) throws ServletException, IOException 
+    private void getProfileFriends(HttpServletRequest request, HttpServletResponse response, Users reqUser) 
+    throws ServletException, IOException 
     {
         List<Friends> friends   =   friendsBean.getUsersFriends(reqUser);
         request.setAttribute("friendList", friends);
         request.getRequestDispatcher("/views/user/profile/friends.jsp").forward(request, response);
     }
         
-    private void getProfileMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    private void getProfileMessages(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException 
     {
         request.getRequestDispatcher("/views/user/profile/messages.jsp").forward(request, response);
     }
             
-    private void getProfileSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    private void getProfileSettings(HttpServletRequest request, HttpServletResponse response, Users reqUser) 
+    throws ServletException, IOException 
     {
-        request.getRequestDispatcher("/views/user/profile/settings.jsp").forward(request, response);
+        if(!activeUserBean.isActive() || activeUserBean.getActiveUser().equals(reqUser))
+            response.sendRedirect(request.getContextPath() + "/error");
+        
+        else
+            request.getRequestDispatcher("/views/user/profile/settings.jsp").forward(request, response);
     }
     
-    private void processSettingsSave(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    private void processSettingsSave(HttpServletRequest request, HttpServletResponse response) 
+    throws ServletException, IOException
     {
         String email        =   request.getParameter("settings_email");
         String picture      =   request.getParameter("settings_picture");

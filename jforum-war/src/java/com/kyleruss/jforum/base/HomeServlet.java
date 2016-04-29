@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "HomeServlet", urlPatterns = {"/home"})
+@WebServlet(name = "HomeServlet", urlPatterns = {"/home", "/error"})
 public class HomeServlet extends HttpServlet 
 {
     /**
@@ -27,6 +27,14 @@ public class HomeServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-        request.getRequestDispatcher("/views/index.jsp").forward(request, response);
+        String nextPath =   null;
+        String path     =   request.getServletPath();
+        if(path.equals("/home"))
+            nextPath    =   "/views/index.jsp";
+        
+        else if(path.equals("/error"))
+            nextPath    =   "/views/error.jsp";
+        
+        if(nextPath != null) request.getRequestDispatcher(nextPath).forward(request, response);
     }
 }
