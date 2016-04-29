@@ -6,16 +6,26 @@
 
 package com.kyleruss.jforum.boards;
 
+import com.kyleruss.jforum.ejb.entity.Categories;
+import com.kyleruss.jforum.ejb.session.entityfac.CategoriesFacade;
+import com.kyleruss.jforum.ejb.session.entityfac.ThreadsFacade;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BoardServlet", urlPatterns = {"/BoardServlet"})
+@WebServlet(name = "BoardServlet", urlPatterns = {"/boards/category", "/boards/thread"})
 public class BoardServlet extends HttpServlet 
 {
+    @EJB
+    private CategoriesFacade categoriesBean;
+    
+    @EJB
+    private ThreadsFacade threadsBean;
+    
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -27,6 +37,31 @@ public class BoardServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String path =   request.getServletPath();
         
+        if(path.equals("/boards/category"))
+            getCategory(request, response);
+    }
+    
+    private void getCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        try
+        {
+            int categoryID      =   Integer.parseInt(request.getParameter("catid"));
+            Categories category =   categoriesBean.find(categoryID);
+            
+            if(category == null)
+                response.sendRedirect(request.getContextPath() + "/error");
+            else
+            {
+                request.setAttribute("category", category);
+                request.getRequestDispatcher("/views/boards/category.jsp").forward(request, response);
+            }
+        }
+        
+        catch(NumberFormatException e)
+        {
+            response.sendRedirect(request.getContextPath() + "/error");
+        }
     }
 }

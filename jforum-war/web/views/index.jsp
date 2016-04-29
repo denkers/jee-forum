@@ -32,7 +32,7 @@
                                     <c:forEach items="${section.categorieses}" var="category">
                                         <tr>
                                             <td>
-                                                <a href="#">${category.name}</a>
+                                                <a href="${rootPath}/boards/category?catid=${category.id}">${category.name}</a>
                                                 <br>${category.description}
                                             </td>
                                             
