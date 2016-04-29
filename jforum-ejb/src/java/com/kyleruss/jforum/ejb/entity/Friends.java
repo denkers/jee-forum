@@ -101,4 +101,9 @@ public class Friends  implements java.io.Serializable
     {
         this.confirmed  =   confirmed;
     }
+    
+    public boolean isFriends(Users user)
+    {
+        //return usersByFriend
+    }
 }

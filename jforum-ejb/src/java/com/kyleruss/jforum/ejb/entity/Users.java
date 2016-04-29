@@ -203,6 +203,24 @@ public class Users  implements java.io.Serializable
     {
         this.threadses = threadses;
     }
+    
+     @Override
+    public int hashCode()
+    {
+        return username.hashCode();
+    }
+    
+     @Override
+    public boolean equals(Object other)
+    {
+        if(other instanceof Users)
+        {
+            Users otherUser =   (Users) other;
+            return username.equals(otherUser.getUsername());
+        }
+        
+        return false;
+    }
 }
 
 
