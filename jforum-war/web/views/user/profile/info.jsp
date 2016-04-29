@@ -4,7 +4,7 @@
   https://github.com/denkers/jforum
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
 <tag:profile profileNavIndex="4" pageTitle="${isOwnProfile? 'Your' : profileUser.username} Profile" profileMenuNavIndex="0" profileUserId="${profileUser.username}">

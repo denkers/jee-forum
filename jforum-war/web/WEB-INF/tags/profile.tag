@@ -40,10 +40,10 @@
                     
                     <%-- PROFILE CONTENT --%>
                     <div id="profile-panel" class="col-md-10 no-float">
-                            <jsp:invoke fragment="profileInfo" />
-                            <jsp:invoke fragment="profileFriends" />
-                            <jsp:invoke fragment="profileMessages" />
-                            <jsp:invoke fragment="profileSettings" />
+                        <jsp:invoke fragment="profileInfo" />
+                        <jsp:invoke fragment="profileFriends" />
+                        <jsp:invoke fragment="profileMessages" />
+                        <jsp:invoke fragment="profileSettings" />
                     </div>
                 </div>
             </div>
