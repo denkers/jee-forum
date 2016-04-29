@@ -94,3 +94,14 @@ body
     padding:5px;
     text-align: center;
 }
+
+.board-panel .panel-body
+{
+    padding:0;
+}
+
+.board-panel .table
+{
+    border:0;
+    margin-bottom:0;
+}

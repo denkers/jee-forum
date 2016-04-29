@@ -6,9 +6,9 @@
 
 package com.kyleruss.jforum.ejb.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +33,7 @@ public class Threads  implements java.io.Serializable
      private Date dateCreated;
      private String title;
      private String content;
-     private Set<Posts> postses = new HashSet();
+     private List<Posts> postses = new ArrayList();
 
     public Threads() {}
 	
@@ -43,7 +44,7 @@ public class Threads  implements java.io.Serializable
         this.title          =   title;
         this.content        =   content;
     }
-    public Threads(Categories categories, Users users, Date dateCreated, String title, String content, Set<Posts> postses)
+    public Threads(Categories categories, Users users, Date dateCreated, String title, String content, List<Posts> postses)
     {
        this.categories      =   categories;
        this.users           =   users;
@@ -124,14 +125,20 @@ public class Threads  implements java.io.Serializable
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="threads")
-    public Set<Posts> getPostses()
+    @OrderBy("postedDate DESC")
+    public List<Posts> getPostses()
     {
         return this.postses;
     }
     
-    public void setPostses(Set<Posts> postses) 
+    public void setPostses(List<Posts> postses) 
     {
         this.postses = postses;
+    }
+    
+    public int getNumPosts()
+    {
+        return postses.size();
     }
 }
 

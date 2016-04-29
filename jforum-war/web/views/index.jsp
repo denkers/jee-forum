@@ -13,7 +13,7 @@
         <div class="row center-block">
             <div class="container col-md-8 col-md-offset-2">
                 <c:forEach items="${sections}" var="section">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default board-panel">
                         <div class="panel-heading">
                             ${section.name}
                         </div>
@@ -34,6 +34,14 @@
                                             <td>
                                                 <a href="#">${category.name}</a>
                                                 <br>${category.description}
+                                            </td>
+                                            
+                                            <td>
+                                                ${category.getNumThreads()} thread(s)
+                                            </td>
+                                            
+                                            <td>
+                                                ${category.getNumPosts()} post(s)
                                             </td>
                                         </tr>
                                     </c:forEach>

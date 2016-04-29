@@ -7,7 +7,6 @@
 package com.kyleruss.jforum.ejb.entity;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.persistence.Column;
@@ -25,7 +24,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="categories", catalog="jforum")
-public class Categories  implements java.io.Serializable, Comparable<Categories>
+public class Categories  implements java.io.Serializable
 {
      private Integer id;
      private Sections sections;
@@ -117,12 +116,19 @@ public class Categories  implements java.io.Serializable, Comparable<Categories>
     {
         this.createdDate    =   createdDate;
     }
-
-
-    @Override
-    public int compareTo(Categories o)
+    
+    public int getNumThreads()
     {
-        return createdDate.compareTo(o.getCreatedDate());
+        return threadses.size();
+    }
+    
+    public int getNumPosts()
+    {
+        int postCount   =   0;
+        for(Threads thread : threadses)
+            postCount += thread.getNumPosts();
+        
+        return postCount;
     }
 }
 

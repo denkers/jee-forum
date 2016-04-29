@@ -24,8 +24,6 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.Sort;
-import org.hibernate.annotations.SortType;
 
 @Entity
 @Table(name="sections", catalog="jforum")
@@ -81,7 +79,7 @@ public class Sections  implements java.io.Serializable
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="sections")
-    @Sort(type=SortType.NATURAL)
+    @OrderBy("createdDate ASC")
     public List<Categories> getCategorieses()
     {
         return this.categorieses;
