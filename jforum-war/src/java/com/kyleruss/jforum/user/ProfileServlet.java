@@ -12,6 +12,7 @@ import com.kyleruss.jforum.ejb.session.entityfac.FriendsFacade;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -61,7 +62,7 @@ public class ProfileServlet extends HttpServlet
             getProfileMessages(request, response);
         
         else if(path.equals("/user/profile/friends"))
-            getProfileFriends(request, response);
+            getProfileFriends(request, response, reqUser);
         
         else if(path.equals("/user/profile/settings"))
             getProfileSettings(request, response);
@@ -79,8 +80,10 @@ public class ProfileServlet extends HttpServlet
         request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
     }
     
-    private void getProfileFriends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    private void getProfileFriends(HttpServletRequest request, HttpServletResponse response, Users reqUser) throws ServletException, IOException 
     {
+        List<Friends> friends   =   friendsBean.getUsersFriends(reqUser);
+        request.setAttribute("friendList", friends);
         request.getRequestDispatcher("/views/user/profile/friends.jsp").forward(request, response);
     }
         

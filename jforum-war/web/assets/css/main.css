@@ -68,14 +68,29 @@ body
 
 #profile-mini-thumb
 {
-	width:128px;
-	height:128px;
-	display:inline-block;
-	outline:1px solid black;
-	background-size:cover;
+    width:128px;
+    height:128px;
+    display:inline-block;
+    outline:1px solid black;
+    background-size:cover;
 }
 
 #profile-picture-container
 {
     text-align:center;
+}
+
+.friend_holder .panel-body
+{
+    min-height:90px;
+    max-height:90px;
+    background-size:cover;
+    background-position: center center;
+    background-repeat:no-repeat;
+}
+
+.friend_holder .panel-footer
+{
+    padding:5px;
+    text-align: center;
 }
