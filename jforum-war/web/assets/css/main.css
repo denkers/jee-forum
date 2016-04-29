@@ -9,6 +9,12 @@ body
     text-align:center;
 }
 
+#head-nav .navbar-brand
+{
+    margin-left:10em;
+    font-size:20px;
+}
+
 #register-panel .panel-body
 {
     padding:50px;
@@ -115,4 +121,9 @@ body
 .center-table-cell
 {
     text-align:center;
+}
+
+.lg-textarea
+{
+    min-height:150px;
 }

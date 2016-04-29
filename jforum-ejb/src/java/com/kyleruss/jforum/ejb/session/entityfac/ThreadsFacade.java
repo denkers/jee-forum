@@ -6,6 +6,7 @@
 
 package com.kyleruss.jforum.ejb.session.entityfac;
 
+import com.kyleruss.jforum.ejb.entity.Categories;
 import com.kyleruss.jforum.ejb.entity.Threads;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -29,4 +30,14 @@ public class ThreadsFacade extends AbstractFacade<Threads>
     {
         return em;
     }
+    
+    public boolean addThread(Threads thread, Categories category)
+    {
+        thread.setCategories(category);
+       category.getThreadses().add(thread);
+       em.persist(thread);
+       em.merge(category);
+       return em.contains(thread);
+    }
+        
 }

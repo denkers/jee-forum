@@ -26,8 +26,8 @@ public class Friends  implements java.io.Serializable
      private Integer id;
      private Users usersByFriendB;
      private Users usersByFriendA;
-     private Date friendshipDate;
      private Boolean confirmed;
+     private Date friendshipDate    =   new Date();
 
     public Friends() {}
     

@@ -19,10 +19,23 @@ public abstract class AbstractFacade<T>
     }
 
     protected abstract EntityManager getEntityManager();
+    
+    public boolean verifyCreate(T entity)
+    {
+        create(entity);
+        return getEntityManager().contains(entity);
+    }
+    
+    public boolean verifyRemove(T entity)
+    {
+        remove(entity);
+        return !getEntityManager().contains(entity);
+    }
 
     public void create(T entity) 
     {
         getEntityManager().persist(entity);
+        getEntityManager().flush();
     }
 
     public void edit(T entity)
@@ -54,5 +67,10 @@ public abstract class AbstractFacade<T>
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+    
+    public void refresh(T entity)
+    {
+        getEntityManager().refresh(entity);
     }
 }

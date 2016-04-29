@@ -17,14 +17,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "BoardServlet", urlPatterns = {"/boards/category", "/boards/thread"})
+@WebServlet(name = "BoardServlet", urlPatterns = {"/boards/category"})
 public class BoardServlet extends HttpServlet 
 {
     @EJB
     private CategoriesFacade categoriesBean;
-    
-    @EJB
-    private ThreadsFacade threadsBean;
     
 
     /**
@@ -54,6 +51,7 @@ public class BoardServlet extends HttpServlet
                 response.sendRedirect(request.getContextPath() + "/error");
             else
             {
+                System.out.println("category threads: " + category.getThreadses().size());
                 request.setAttribute("category", category);
                 request.getRequestDispatcher("/views/boards/category.jsp").forward(request, response);
             }

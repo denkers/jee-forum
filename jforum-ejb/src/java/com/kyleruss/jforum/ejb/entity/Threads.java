@@ -9,6 +9,7 @@ package com.kyleruss.jforum.ejb.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -30,10 +31,10 @@ public class Threads  implements java.io.Serializable
      private Integer id;
      private Categories categories;
      private Users users;
-     private Date dateCreated;
      private String title;
      private String content;
-     private List<Posts> postses = new ArrayList();
+     private Date dateCreated     =     new Date();  
+     private List<Posts> postses  =     new ArrayList();
 
     public Threads() {}
 	
@@ -124,7 +125,7 @@ public class Threads  implements java.io.Serializable
         this.content = content;
     }
 
-    @OneToMany(fetch=FetchType.LAZY, mappedBy="threads")
+    @OneToMany(fetch=FetchType.LAZY, mappedBy="threads", cascade=CascadeType.PERSIST)
     @OrderBy("postedDate DESC")
     public List<Posts> getPostses()
     {

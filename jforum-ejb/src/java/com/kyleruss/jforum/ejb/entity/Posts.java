@@ -26,9 +26,9 @@ public class Posts  implements java.io.Serializable
      private Integer id;
      private Threads threads;
      private Users users;
-     private Date postedDate;
      private String content;
-
+     private Date postedDate    =   new Date();
+     
     public Posts() {}
 	
     public Posts(Threads threads, Users users, String content) 

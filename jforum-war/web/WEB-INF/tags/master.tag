@@ -37,7 +37,7 @@
         <nav id="head-nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand">jeeForum</a>
+                    <a class="navbar-brand"><strong><span class="glyphicon glyphicon-comment"></span> jeeForum</strong></a>
                 </div>
                 
                 <ul class="nav navbar-nav navbar-right">

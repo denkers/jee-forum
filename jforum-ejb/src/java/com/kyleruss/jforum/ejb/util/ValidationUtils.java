@@ -29,4 +29,20 @@ public class ValidationUtils
         
         return true;
     }
+    
+    public static boolean isNumeric(String... inputs)
+    {
+        try
+        {
+            for(String input : inputs)
+                Integer.parseInt(input);
+            
+            return true;
+        }
+        
+        catch(NumberFormatException e)
+        {
+            return false;
+        }
+    }
 }
