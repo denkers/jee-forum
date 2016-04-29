@@ -42,7 +42,6 @@ public class ProfileServlet extends HttpServlet
     {
         String username     =   request.getParameter("userid");
         boolean ownProfile  =   activeUserBean.isActive() && activeUserBean.getActiveUser().getUsername().equals(username);   
-        Friends friendship  =   null;
         Users reqUser;
         
         if(ownProfile)
@@ -50,12 +49,48 @@ public class ProfileServlet extends HttpServlet
         else
             reqUser =   usersBean.find(username);
         
+        request.setAttribute("profileUser", reqUser);
+        request.setAttribute("isOwnProfile", ownProfile);
+        
+        String path =   request.getServletPath();
+        
+        if(path.equals("/user/profile/info"))
+            getProfileInfo(request, response, ownProfile, reqUser);
+        
+        else if(path.equals("/user/profile/messages"))
+            getProfileMessages(request, response);
+        
+        else if(path.equals("/user/profile/friends"))
+            getProfileFriends(request, response);
+        
+        else if(path.equals("/user/profile/settings"))
+            getProfileSettings(request, response);
+    }
+    
+    private void getProfileInfo(HttpServletRequest request, HttpServletResponse response, boolean ownProfile, Users reqUser) 
+    throws ServletException, IOException 
+    {
+        Friends friendship  =   null;
+        
         if(!ownProfile)
             friendship  =   friendsBean.getFriendship(activeUserBean.getActiveUser(), reqUser);
         
-        request.setAttribute("profileUser", reqUser);
-        request.setAttribute("isOwnProfile", ownProfile);
         request.setAttribute("friendship", friendship);
         request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
+    }
+    
+    private void getProfileFriends(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        request.getRequestDispatcher("/views/user/profile/friends.jsp").forward(request, response);
+    }
+        
+    private void getProfileMessages(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        request.getRequestDispatcher("/views/user/profile/messages.jsp").forward(request, response);
+    }
+            
+    private void getProfileSettings(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        request.getRequestDispatcher("/views/user/profile/settings.jsp").forward(request, response);
     }
 }

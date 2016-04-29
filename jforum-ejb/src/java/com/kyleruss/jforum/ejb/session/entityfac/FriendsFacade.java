@@ -9,6 +9,7 @@ package com.kyleruss.jforum.ejb.session.entityfac;
 import com.kyleruss.jforum.ejb.entity.Friends;
 import com.kyleruss.jforum.ejb.entity.Users;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 import java.util.Map.Entry;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -53,6 +54,17 @@ public class FriendsFacade extends AbstractFacade<Friends>
         {
             return null;
         }
+    }
+    
+    public List<Friends> getUsersFriends(Users user)
+    {
+        CriteriaBuilder builder         =   em.getCriteriaBuilder();
+        CriteriaQuery<Friends> query    =   builder.createQuery(entityClass);
+        Root<Friends> from              =   query.from(entityClass);
+        query.select(from);
+        
+        query.where(builder.or(builder.equal(from.get("usersByFriendA"), user), builder.equal(from.get("usersByFriendB"), user)));
+        return em.createQuery(query).getResultList();
     }
     
     public Entry<Boolean, String> addFriend(Users user, Users friend)
