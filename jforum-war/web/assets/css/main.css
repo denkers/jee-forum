@@ -154,3 +154,19 @@ body
 {
     padding: 0.2em 0.6em 0.1em;
 }
+
+.reply-area
+{
+    min-height:150px;
+}
+
+.post-point
+{
+    padding-top:50px;
+}
+
+.post-section
+{
+    padding-top: 70px; 
+    margin-top:-70px;
+}

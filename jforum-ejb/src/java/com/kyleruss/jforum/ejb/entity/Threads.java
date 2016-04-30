@@ -126,7 +126,7 @@ public class Threads  implements java.io.Serializable
     }
 
     @OneToMany(fetch=FetchType.LAZY, mappedBy="threads", cascade=CascadeType.PERSIST)
-    @OrderBy("postedDate DESC")
+    @OrderBy("postedDate ASC")
     public List<Posts> getPostses()
     {
         return this.postses;

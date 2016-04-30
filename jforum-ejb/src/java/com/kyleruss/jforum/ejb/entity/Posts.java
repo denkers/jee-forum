@@ -7,6 +7,8 @@
 package com.kyleruss.jforum.ejb.entity;
 
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -103,6 +105,23 @@ public class Posts  implements java.io.Serializable
     public void setContent(String content)
     {
         this.content = content;
+    }
+    
+    public String getParsedContent()
+    {
+        Pattern pattern =   Pattern.compile("<REPLYTO>(.+?)</REPLYTO>");
+        Matcher matcher =   pattern.matcher(content);
+        String parsed   =   content;
+        
+        while(matcher.find())
+        {
+            String group    =   matcher.group();
+            String postID   =   group.replace("<REPLYTO>", "").replace("</REPLYTO>", "");
+            String injected =   group.replace(group, "<a class='label label-danger' href='#" + postID + "'><span class='glyphicon glyphicon-comment'></span> Post " + postID + "</a>");
+            parsed          =   parsed.replace(group, injected);
+        }
+        
+        return parsed;
     }
 }
 

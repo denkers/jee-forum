@@ -15,6 +15,7 @@
 <%@attribute name="post_id" required="true" %>
 <%@attribute name="thread_id" required="true" %>
 
+<section class="post-section" id="${original_post? 'OP' : post_id}">
 <div class="panel panel-default post-panel">
     <div class="panel-body">
         <div id="profile-info" class="col-md-2 poster-info">
@@ -36,24 +37,30 @@
                 <span class="glyphicon glyphicon-user"></span> View profile
             </a>
 
-            <c:choose>
-                <c:when test="${!original_post}">
-                    <a href="${rootPath}/boards/post/edit?threadid=${thread_id}&postid=${post_id}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit post
-                    </a>
-                </c:when>
+            <c:if test="${sessionScope.activeUser != null}">
+                <c:if test="${sessionScope.activeUser.username == post_user}">
+                    <c:choose>
+                        <c:when test="${!original_post}">
+                            <a href="${rootPath}/boards/post/edit?threadid=${thread_id}&postid=${post_id}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span> Edit post
+                            </a>
+                        </c:when>
+
+                        <c:otherwise>
+                            <a href="${rootPath}/boards/thread/save?threadid=${thread_id}" class="btn btn-default">
+                                <span class="glyphicon glyphicon-pencil"></span> Edit thread
+                            </a>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:if test="${!original_post}">
+                        <a href="${rootPath}/boards/post/remove?postid=${post_id}" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove"></span> Remove post
+                        </a>
+                    </c:if>
+                </c:if>
                 
-                <c:otherwise>
-                    <a href="${rootPath}/boards/thread/save?threadid=${thread_id}" class="btn btn-default">
-                        <span class="glyphicon glyphicon-pencil"></span> Edit thread
-                    </a>
-                </c:otherwise>
-            </c:choose>
-            
-            <c:if test="${!original_post}">
-                <a href="${rootPath}/boards/post/remove?postid=${post_id}" class="btn btn-default">
-                    <span class="glyphicon glyphicon-remove"></span> Remove post
-                </a>
+                <button class="btn btn-default post-reply-button"><span class="glyphicon glyphicon-share-alt"></span> Reply</button>
             </c:if>
         </div>
             <div class="post-details">
@@ -63,3 +70,4 @@
         </div>
     </div>
 </div>
+</section>

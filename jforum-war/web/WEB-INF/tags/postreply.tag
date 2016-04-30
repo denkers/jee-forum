@@ -9,23 +9,29 @@
 <%@attribute name="pid" required="true" %>
 <%@attribute name="threadid" required="true" %>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        Quick reply
-    </div>
+<section id="reply" class="post-section">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Quick reply
+        </div>
 
-    <div class="panel-body">
-        <form method="POST" action="${rootPath}/boards/post/save">
-            <h4><span class="glyphicon glyphicon-pencil"></span> Reply message</h4>
-            <input type="hidden" name="post_id" value="${pid}"/>
-            <input type="hidden" name="thread_id"value="${threadid}"/>
-            <textarea class="form-control" name="post_content" placeholder="Enter your message">${pcontent}</textarea>
-            <small><span class="glyphicon glyphicon-info-sign"></span> 1500 characters allowed</small>
-            
-            
-            <br><br>
-            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-ok"></span> Save reply</button>
-        </form>
+        <div class="panel-body">
+            <form method="POST" action="${rootPath}/boards/post/save">
+                <h4><span class="glyphicon glyphicon-pencil"></span> Reply message</h4>
+                <input type="hidden" name="post_id" value="${pid}"/>
+                <input type="hidden" name="thread_id"value="${threadid}"/>
+                <textarea id="post-area" class="form-control reply-area" name="post_content" placeholder="Enter your message">
+                    ${pcontent}
+                </textarea>
+                <small><span class="glyphicon glyphicon-info-sign"></span> 1500 characters allowed</small>
 
+
+                <br><br>
+                <button ${sessionScope.activeUser == null? 'disabled' : ''} class="btn btn-primary" type="submit">
+                    <span class="glyphicon glyphicon-ok"></span> Save reply
+                </button>
+            </form>
+
+        </div>
     </div>
-</div>
+</section>

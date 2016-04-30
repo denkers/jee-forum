@@ -16,7 +16,7 @@
             <div class="container col-md-8 col-md-offset-2">
                 <div class="panel panel-default board-panel">
                     <div class="panel-heading">
-                        <a href="${rootPath}/boards/thread/save?catid=${category.id}" class="btn btn-default pull-right">
+                        <a ${sessionScope.activeUser == null? 'disabled' : ''} href="${rootPath}/boards/thread/save?catid=${category.id}" class="btn btn-default pull-right">
                             <span class="glyphicon glyphicon-plus"></span> New Thread
                         </a>
                         <strong>${category.name}</strong>
@@ -76,7 +76,8 @@
                             <c:otherwise>
                                 <div class="no-thread-container">
                                     <h2><span class="glyphicon glyphicon-info-sign"></span> No threads found in this category</h2>
-                                    <a href="${rootPath}/boards/thread/create?catid=${category.id}" class="btn btn-primary btn-lg">
+                                    <a ${sessionScope.activeUser == null? 'disabled' : ''} 
+                                        href="${rootPath}/boards/thread/create?catid=${category.id}" class="btn btn-primary btn-lg">
                                         <span class="glyphicon glyphicon-plus"></span> Create new thread
                                     </a>
                                 </div>

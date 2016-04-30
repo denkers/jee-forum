@@ -12,6 +12,11 @@
 <%@attribute name="navIndex" required="true" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+     <%
+        String rootPath =   request.getContextPath();
+        request.setAttribute("rootPath", rootPath);
+    %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -27,12 +32,6 @@
     </head>
     
     <body>
-        
-        <%
-            String rootPath =   request.getContextPath();
-            request.setAttribute("rootPath", rootPath);
-        %>
-        
         <%-- HEAD NAVIGATION --%>
         <nav id="head-nav" class="navbar navbar-default navbar-fixed-top">
             <div class="container-fluid">
