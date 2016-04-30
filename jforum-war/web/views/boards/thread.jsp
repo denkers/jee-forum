@@ -32,7 +32,7 @@
                 </c:forEach>
                 
                 <br>
-                <tag:postreply pcontent="" pid=""></tag:postreply>
+                <tag:postreply pcontent="" pid="" threadid="${thread.id}"></tag:postreply>
             </div>
         </div>
     </jsp:attribute>

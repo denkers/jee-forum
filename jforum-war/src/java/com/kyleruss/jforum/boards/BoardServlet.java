@@ -8,7 +8,6 @@ package com.kyleruss.jforum.boards;
 
 import com.kyleruss.jforum.ejb.entity.Categories;
 import com.kyleruss.jforum.ejb.session.entityfac.CategoriesFacade;
-import com.kyleruss.jforum.ejb.session.entityfac.ThreadsFacade;
 import java.io.IOException;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;

@@ -34,10 +34,10 @@ public class ThreadsFacade extends AbstractFacade<Threads>
     public boolean addThread(Threads thread, Categories category)
     {
         thread.setCategories(category);
-       category.getThreadses().add(thread);
-       em.persist(thread);
-       em.merge(category);
-       return em.contains(thread);
+        category.getThreadses().add(thread);
+        em.persist(thread);
+        em.merge(category);
+        return em.contains(thread);
     }
         
 }
