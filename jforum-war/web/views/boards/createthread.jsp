@@ -27,16 +27,16 @@
                         </c:if>
                         
                         <form method="POST" action="${rootPath}/boards/thread/save">
-                            <input type="hidden" name="thread_edit_id" value="${thread_edit_id}" />
-                            <input type="hidden" name="thread_cat_id" value="${catid}"/>
+                            <input type="hidden" name="thread_edit_id" value="${thread.id}" />
+                            <input type="hidden" name="thread_cat_id" value="${thread.categories.id}"/>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span> Thread title</span>
-                                <input class="form-control" type="text" placeholder="Thread title/subject" name="thread_title" value="${thread_edit_title}" />
+                                <input class="form-control" type="text" placeholder="Thread title/subject" name="thread_title" value="${thread.title}" />
                             </div>
 
                             <br>
                             <h4><strong><span class="glyphicon glyphicon-pencil"></span> Content</strong></h4>
-                            <textarea class="form-control lg-textarea" name="thread_content">${thread_edit_content}</textarea>
+                            <textarea class="form-control lg-textarea" name="thread_content">${thread.content}</textarea>
 
                             <br>
                             <div class="row center-table-cell">

@@ -74,6 +74,16 @@ public class ThreadServlet extends HttpServlet
     
     private void getThreadCreation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String threadIDParam    =   request.getParameter("threadid");
+        if(!threadIDParam.equals("") && ValidationUtils.isNumeric(threadIDParam))
+        {
+            Threads thread   =   threadsBean.find(Integer.parseInt(threadIDParam));
+            if(!activeUserBean.isActive() || thread == null || !thread.getUsers().equals(activeUserBean.getActiveUser()))
+                response.sendRedirect(request.getContextPath() + "/error");
+            else
+                request.setAttribute("thread", threadsBean.find(Integer.parseInt(threadIDParam)));
+        }
+        
         request.getRequestDispatcher("/views/boards/createthread.jsp").forward(request, response);
     }
 

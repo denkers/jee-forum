@@ -32,15 +32,33 @@
     <div class="panel-footer">
         <div class="row post-controls">
         <div class="btn-group pull-right">
-            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> View profile</a>
-            <a href="${rootPath}/boards/post/edit?threadid=${thread_id}&postid=${post_id}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit post</a>
+            <a href="${rootPath}/user/profile/info?userid=${post_user}" class="btn btn-default">
+                <span class="glyphicon glyphicon-user"></span> View profile
+            </a>
+
+            <c:choose>
+                <c:when test="${!original_post}">
+                    <a href="${rootPath}/boards/post/edit?threadid=${thread_id}&postid=${post_id}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit post
+                    </a>
+                </c:when>
+                
+                <c:otherwise>
+                    <a href="${rootPath}/boards/thread/save?threadid=${thread_id}" class="btn btn-default">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit thread
+                    </a>
+                </c:otherwise>
+            </c:choose>
             
             <c:if test="${!original_post}">
-                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Remove post</a>
+                <a href="${rootPath}/boards/post/remove?postid=${post_id}" class="btn btn-default">
+                    <span class="glyphicon glyphicon-remove"></span> Remove post
+                </a>
             </c:if>
         </div>
             <div class="post-details">
-                <span class="label label-${original_post? 'success' : 'primary'}">${original_post? 'Original post' : 'Reply'}</span> Posted ${post_date}
+                <span class="label label-${original_post? 'success' : 'primary'}">
+                    ${original_post? 'Original post' : 'Reply'}</span> Posted ${post_date}
             </div>
         </div>
     </div>

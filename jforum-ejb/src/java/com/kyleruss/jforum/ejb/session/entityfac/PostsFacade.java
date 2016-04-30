@@ -46,4 +46,14 @@ public class PostsFacade extends AbstractFacade<Posts>
         post.setContent(content);
         edit(post);
     }
+    
+    public boolean removePost(Posts post)
+    {
+        Threads thread  =   post.getThreads();
+        boolean result  =   thread.getPostses().remove(post);
+        System.out.println(result);
+        remove(post);
+        em.merge(thread);
+        return !em.contains(post);
+    }
 }

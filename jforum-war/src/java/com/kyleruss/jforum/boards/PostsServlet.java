@@ -46,6 +46,9 @@ public class PostsServlet extends HttpServlet
         String path =   request.getServletPath();
         if(path.equals("/boards/post/edit"))
             getPostEdit(request, response);
+        
+         else if(path.equals("/boards/post/remove"))
+            removePost(request, response);
     }
     
     private void getPostEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
@@ -84,6 +87,26 @@ public class PostsServlet extends HttpServlet
     {
         response.sendRedirect(request.getContextPath() + "/boards/thread?catid=" + 
                             thread.getCategories().getId() + "&threadid=" + thread.getId());
+    }
+    
+    private void removePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        String postIDParam  =   request.getParameter("postid");
+        if(!activeUserBean.isActive() || postIDParam.equals("") || !ValidationUtils.isNumeric(postIDParam))
+            response.sendRedirect(request.getContextPath() + "/error");
+        else
+        {
+            Posts post  =   postsBean.find(Integer.parseInt(postIDParam));
+            Users user  =   post.getUsers();
+            
+            if(!user.equals(activeUserBean.getActiveUser()))
+                response.sendRedirect(request.getContextPath() + "/error");
+            else
+            {
+                postsBean.removePost(post);
+                redirectToThread(request, response, post.getThreads());
+            }
+        }
     }
     
     private void savePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
