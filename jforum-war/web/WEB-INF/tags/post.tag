@@ -6,11 +6,14 @@
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@attribute name="post_content" required="true" %>
 <%@attribute name="post_user" required="true" %>
 <%@attribute name="post_date" required="true" %>
 <%@attribute name="post_user_picture" required="true" %>
 <%@attribute name="original_post" required="true" %>
+<%@attribute name="post_id" required="true" %>
+<%@attribute name="thread_id" required="true" %>
 
 <div class="panel panel-default post-panel">
     <div class="panel-body">
@@ -30,8 +33,11 @@
         <div class="row post-controls">
         <div class="btn-group pull-right">
             <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-user"></span> View profile</a>
-            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit post</a>
-            <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Remove post</a>
+            <a href="${rootPath}/boards/post/edit?threadid=${thread_id}&postid=${post_id}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Edit post</a>
+            
+            <c:if test="${!original_post}">
+                <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Remove post</a>
+            </c:if>
         </div>
             <div class="post-details">
                 <span class="label label-${original_post? 'success' : 'primary'}">${original_post? 'Original post' : 'Reply'}</span> Posted ${post_date}

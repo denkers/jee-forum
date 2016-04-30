@@ -43,6 +43,22 @@ public class PostsServlet extends HttpServlet
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
+        String path =   request.getServletPath();
+        if(path.equals("/boards/post/edit"))
+            getPostEdit(request, response);
+    }
+    
+    private void getPostEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
+        String postIDParam  =   request.getParameter("postid");
+        if(postIDParam.equals("") || !ValidationUtils.isNumeric(postIDParam))
+            response.sendRedirect(request.getContextPath() + "/error");
+        else
+        {
+            Posts post  =       postsBean.find(Integer.parseInt(postIDParam));
+            request.setAttribute("post", post);
+            request.getRequestDispatcher("/views/boards/editpost.jsp").forward(request, response);
+        }
     }
 
     /**
@@ -104,3 +120,4 @@ public class PostsServlet extends HttpServlet
         }
     }
 }
+

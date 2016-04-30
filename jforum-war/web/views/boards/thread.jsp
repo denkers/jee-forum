@@ -21,14 +21,14 @@
                 </h3>
                 
                 <%-- DISPLAY THREAD CONTENT POST --%>
-                <tag:post post_content="${thread.content}" post_date="${threadDate}" original_post="true" 
-                              post_user="${thread.users.username}" post_user_picture="${thread.users.picture}"></tag:post>
+                <tag:post post_content="${thread.content}" post_date="${threadDate}" original_post="true" post_id="-1"
+                thread_id="${thread.id}" post_user="${thread.users.username}" post_user_picture="${thread.users.picture}"></tag:post>
                               
                 <%-- DISPLAY POSTS --%>
                 <c:forEach items="${thread.postses}" var="post">
                     <fmt:formatDate type="both" dateStyle="short" timeStyle="short" value="${post.postedDate}" var="postDate" />
-                    <tag:post post_content="${post.content}" post_date="${postDate}" original_post="false" 
-                              post_user="${post.users.username}" post_user_picture="${post.users.picture}"></tag:post>
+                    <tag:post post_content="${post.content}" post_date="${postDate}" original_post="false" post_id="${post.id}"
+                    thread_id="${thread.id}" post_user="${post.users.username}" post_user_picture="${post.users.picture}"></tag:post>
                 </c:forEach>
                 
                 <br>
