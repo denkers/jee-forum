@@ -32,9 +32,6 @@
                             </a>
                                 
                             <c:if test="${isOwnProfile}">
-                                <a href="${rootPath}/user/profile/messages?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 2? 'active' : ''}">
-                                    <span class="glyphicon glyphicon-envelope"></span> Messages
-                                </a>
                                 <a href="${rootPath}/user/profile/settings?userid=${profileUserId}" class="list-group-item ${profileMenuNavIndex == 3? 'active' : ''}">
                                     <span class="glyphicon glyphicon-cog"></span> Settings
                                 </a>
@@ -46,7 +43,6 @@
                     <div id="profile-panel" class="col-md-10 no-float">
                         <jsp:invoke fragment="profileInfo" />
                         <jsp:invoke fragment="profileFriends" />
-                        <jsp:invoke fragment="profileMessages" />
                         <jsp:invoke fragment="profileSettings" />
                     </div>
                 </div>

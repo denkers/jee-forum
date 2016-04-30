@@ -23,11 +23,10 @@
                    <tag:result-alert resultStatus="${profileResult.key}" resultMessage="${profileResult.value}"></tag:result-alert>
                </c:if>
                <div class="btn-group pull-right">
-                   <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-comment"></span> Message</a>
-                   
                     <c:choose>
                         <c:when test="${friendship != null}">
-                            <a href="${rootPath}/user/profile/info/friends/remove?userid=${profileUser.username}&friendshipid=${friendship.id}" class="btn btn-default">
+                            <a href="${rootPath}/user/profile/info/friends/remove?userid=${profileUser.username}&friendshipid=${friendship.id}" 
+                               class="btn btn-default">
                                 <span class="glyphicon glyphicon-remove"></span> Remove friend
                             </a>
                         </c:when>
@@ -39,9 +38,10 @@
                         </c:otherwise>
                     </c:choose>
                </div>
-               <br>
+               <br><br>
            </c:if>
            
+            <div>
            <div class="col-md-4">
                <h3><strong><span class="glyphicon glyphicon-envelope"></span> Email:</strong></h3>
                <h3><strong><span class="glyphicon glyphicon-time"></span> Member since:</strong></h3>
@@ -51,6 +51,7 @@
                <h3>${profileUser.email}</h3>
                <h3>${profileUser.getFormattedRegisterDate()}</h3>
            </div>
+            </div>
        </div>
     </jsp:attribute>
 </tag:profile>

@@ -106,7 +106,7 @@ public class ProfileServlet extends HttpServlet
     private void getProfileSettings(HttpServletRequest request, HttpServletResponse response, Users reqUser) 
     throws ServletException, IOException 
     {
-        if(!activeUserBean.isActive() || activeUserBean.getActiveUser().equals(reqUser))
+        if(!activeUserBean.isActive() || !activeUserBean.getActiveUser().equals(reqUser))
             response.sendRedirect(request.getContextPath() + "/error");
         
         else

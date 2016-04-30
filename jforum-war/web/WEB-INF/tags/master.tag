@@ -53,20 +53,29 @@
                         </c:when>
                             
                         <c:otherwise>
-                            <li class="${navIndex == 3? "active" : ""}">
-                                <a href="<%=request.getContextPath()%>"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
-                            </li>
                             <li class="${navIndex == 4? "active" : ""}">
-                                <a href="<%=request.getContextPath()%>/user/profile/info?userid=${sessionScope.activeUser.username}">
+                                <a href="${rootPath}/user/profile/info?userid=${sessionScope.activeUser.username}">
                                     <span class="glyphicon glyphicon-user"></span> Profile
                                 </a>
                             </li>
-                            <li class="${navIndex == 5? "active" : ""}">
-                                <a href="<%=request.getContextPath()%>/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
+                            
+                              <li class="${navIndex == 5? "active" : ""}">
+                                <a href="${rootPath}/user/profile/friends?userid=${sessionScope.activeUser.username}">
+                                    <span class="glyphicon glyphicon-heart"></span> Friends
+                                </a>
+                            </li>
+                            
+                              <li class="${navIndex == 6? "active" : ""}">
+                                <a href="${rootPath}/user/profile/settings?userid=${sessionScope.activeUser.username}">
+                                    <span class="glyphicon glyphicon-cog"></span> Settings
+                                </a>
+                            </li>
+                            
+                            <li class="${navIndex == 7? "active" : ""}">
+                                <a href="<${rootPath}/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
-                    <li class="${navIndex == 6? "active" : ""}"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
                 </ul>
             </div>
         </nav>

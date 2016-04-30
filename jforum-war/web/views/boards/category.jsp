@@ -41,6 +41,10 @@
                                         <c:forEach items="${category.threadses}" var="thread">
                                             <tr>
                                                 <td>
+                                                    <c:if test="${fn:length(thread.postses) > 5}">
+                                                        <span class="label label-danger">HOT</span>
+                                                    </c:if>
+                                                        
                                                     <strong><a href="${rootPath}/boards/thread?catid=${category.id}&threadid=${thread.id}">${thread.title}</a><br></strong>
                                                     <small>Created by <a href="#">${thread.users.username}</a></small>
                                                 </td>
