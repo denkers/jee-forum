@@ -127,3 +127,30 @@ body
 {
     min-height:150px;
 }
+
+.post-content
+{
+    padding-left:40px;
+    width:80%;
+}
+
+.post-controls
+{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.post-details
+{
+    line-height:2;
+}
+
+.poster-info
+{
+    width:20%;
+}
+
+.thread-label
+{
+    padding: 0.2em 0.6em 0.1em;
+}
