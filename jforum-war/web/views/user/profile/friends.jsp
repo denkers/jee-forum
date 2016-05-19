@@ -19,23 +19,22 @@
             </h3>
         </div>
          
-        <c:forEach items="${friendList}" var="friendship">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="panel panel-default friend_holder">
-                        
-                        <div class="panel-body" style='background-image: url("${friendship.getFriend(profileUser).picture}")'>
+            <div class='row'>
+                <c:forEach items="${friendList}" var="friendship">
+                        <div class="col-md-2">
+                            <div class="panel panel-default friend_holder">
+                                <div class="panel-body" style='background-image: url("${friendship.getFriend(profileUser).picture}")'>
+                                </div>
+
+                                <div class="panel-footer">
+                                    <a class="plain-link" href="${rootPath}/user/profile/info?userid=${friendship.getFriend(profileUser).username}">
+                                        ${friendship.getFriend(profileUser).username}
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="panel-footer">
-                            <a class="plain-link" href="${rootPath}/user/profile/info?userid=${friendship.getFriend(profileUser).username}">
-                                ${friendship.getFriend(profileUser).username}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
-        </c:forEach>
                 
     </jsp:attribute>
 </tag:profile>
