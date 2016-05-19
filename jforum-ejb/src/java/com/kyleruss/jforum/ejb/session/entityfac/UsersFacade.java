@@ -33,6 +33,14 @@ public class UsersFacade extends AbstractFacade<Users>
         return em;
     }
     
+    /**
+     * Creates a new user entity with the passed param details
+     * @param username The users unique name
+     * @param password The password the user will use to login
+     * @param rePassword A repeat of the password param that must match
+     * @param email The email address of the user
+     * @return An entry where key -> status and value -> a response message (error etc.)
+     */
     public Entry<Boolean, String> createUserAccount(String username, String password, String rePassword, String email)
     {
         boolean result  =   false;
@@ -61,6 +69,11 @@ public class UsersFacade extends AbstractFacade<Users>
         return new SimpleEntry<>(result, response);
     }
     
+    /**
+     * Updates the passed user entity with 
+     * the new email, password and picture
+     * @param user The user entity will be updated
+     */
     public void saveSettings(String email, String password, String picture, Users user)
     {
         user.setEmail(email);
@@ -69,6 +82,11 @@ public class UsersFacade extends AbstractFacade<Users>
         edit(user);
     }
     
+    /**
+     * Checks that the params username, password, email
+     * are not null and whose string lengths are to be expected
+     * @return true if the inputs are not null and have valid length
+     */
     public boolean isValidInput(String username, String password, String email)
     {
         return  ValidationUtils.isNotNull(username, password, email)
@@ -76,6 +94,13 @@ public class UsersFacade extends AbstractFacade<Users>
                 && ValidationUtils.isInRange(password, 6, 16);
     }
     
+    /**
+     * Authenticates the username and password
+     * Returns a user entity if authenticated successfully
+     * @param username The username of the login
+     * @param password The password of the passed user
+     * @return An entry where key -> the authenticated User and value -> a response message (error etc.)
+     */
     public Entry<Users, String> loginUser(String username, String password)
     {
         Users user = null;

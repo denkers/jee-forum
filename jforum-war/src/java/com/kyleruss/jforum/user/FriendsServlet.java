@@ -54,6 +54,10 @@ public class FriendsServlet extends HttpServlet
             processAddRequest(request, response); 
     }
     
+    /**
+     * Removes the friend for the passed friendship id
+     * Redirects to error page when user is not authenticated
+     */
     private void processRemoveRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {    
         if(!activeUserBean.isActive())
@@ -85,6 +89,11 @@ public class FriendsServlet extends HttpServlet
         }
     }
     
+    /**
+     * Attempts to add a new friendship between the authenticated user
+     * and the user entity for the passed user id
+     * Redirects to error page if user isn't authenticated
+     */
     private void processAddRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String username     =   request.getParameter("userid");

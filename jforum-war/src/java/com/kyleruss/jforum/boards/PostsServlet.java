@@ -51,6 +51,10 @@ public class PostsServlet extends HttpServlet
             removePost(request, response);
     }
     
+    /**
+     * Fetches the post for the passed post id
+     * Displays post editing page and passed the fetched post as attribute
+     */
     private void getPostEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String postIDParam  =   request.getParameter("postid");
@@ -83,12 +87,20 @@ public class PostsServlet extends HttpServlet
             savePost(request, response);
     }
     
+    /**
+     * Redirects the user to the page of the passed thread
+     * @param thread The thread whose page will be redirected to
+     */
     private void redirectToThread(HttpServletRequest request, HttpServletResponse response, Threads thread) throws ServletException, IOException 
     {
         response.sendRedirect(request.getContextPath() + "/boards/thread?catid=" + 
                             thread.getCategories().getId() + "&threadid=" + thread.getId());
     }
     
+    /**
+     * Removes the post entity that has the passed post id
+     * Displays error page when given invalid post id
+     */
     private void removePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         String postIDParam  =   request.getParameter("postid");
@@ -109,6 +121,11 @@ public class PostsServlet extends HttpServlet
         }
     }
     
+    /**
+     * Creates or edits a post entity
+     * If the post_id param is passed on request then the it will attempt to edit the found post entity
+     * Otherwise a new post entity is created and properties are set to those passed
+     */
     private void savePost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String postIDParam  =   request.getParameter("post_id");

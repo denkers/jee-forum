@@ -51,9 +51,13 @@ public class ThreadServlet extends HttpServlet
         
         else if(path.equals("/boards/thread"))
             getThread(request, response);
-        
     }
     
+    /**
+     * Displays the page for the thread 
+     * Redirects to the error page when given invalid 
+     * thread id param or thread was not found
+     */
     private void getThread(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String threadID =   request.getParameter("threadid");
@@ -72,10 +76,16 @@ public class ThreadServlet extends HttpServlet
         }
     }
     
+    /**
+     * Displays the page for creating threads
+     * Allows reuse of the creation page for editing threads
+     * If the threadid param is passed it will be considered editing
+     * In which case the fetched thread for the id is passed
+     */
     private void getThreadCreation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         String threadIDParam    =   request.getParameter("threadid");
-        if(!threadIDParam.equals("") && ValidationUtils.isNumeric(threadIDParam))
+        if(threadIDParam != null && !threadIDParam.equals("") && ValidationUtils.isNumeric(threadIDParam))
         {
             Threads thread   =   threadsBean.find(Integer.parseInt(threadIDParam));
             if(!activeUserBean.isActive() || thread == null || !thread.getUsers().equals(activeUserBean.getActiveUser()))
@@ -88,11 +98,10 @@ public class ThreadServlet extends HttpServlet
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * Handles create new threads and editing existing threads.
+     * If the thread id param is passed then thread will be editited
+     * otherwise a new thread entity is created
+     * Redirects to error page if invalid input or not authenticated
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

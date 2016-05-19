@@ -9,7 +9,6 @@ package com.kyleruss.jforum.boards;
 import com.kyleruss.jforum.ejb.entity.Categories;
 import com.kyleruss.jforum.ejb.session.entityfac.CategoriesFacade;
 import java.io.IOException;
-import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +39,10 @@ public class BoardServlet extends HttpServlet
             getCategory(request, response);
     }
     
+    /**
+     * Fetches and displays the categories
+     * Displays error page if passed invalid category id
+     */
     private void getCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
     {
         try
@@ -51,7 +54,6 @@ public class BoardServlet extends HttpServlet
                 response.sendRedirect(request.getContextPath() + "/error");
             else
             {
-                System.out.println("category threads: " + category.getThreadses().size());
                 request.setAttribute("category", category);
                 request.getRequestDispatcher("/views/boards/category.jsp").forward(request, response);
             }

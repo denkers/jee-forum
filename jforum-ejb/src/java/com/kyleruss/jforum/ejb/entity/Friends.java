@@ -27,18 +27,23 @@ public class Friends  implements java.io.Serializable
      private Users usersByFriendB;
      private Users usersByFriendA;
      private Boolean confirmed;
-     private Date friendshipDate    =   new Date();
+     private Date friendshipDate;
 
-    public Friends() {}
+    public Friends() 
+    {
+        friendshipDate   =   new Date();
+    }
     
     public Friends(Users usersByFriendB, Users usersByFriendA)
     {
+        this();
         this.usersByFriendB     =   usersByFriendB;
         this.usersByFriendA     =   usersByFriendA;
     }
     
     public Friends(Users usersByFriendB, Users usersByFriendA, Date friendshipDate) 
     {
+       this();
        this.usersByFriendB      =   usersByFriendB;
        this.usersByFriendA      =   usersByFriendA;
        this.friendshipDate      =   friendshipDate;

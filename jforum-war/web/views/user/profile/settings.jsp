@@ -7,7 +7,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 
-<tag:profile profileNavIndex="4" pageTitle="Account settings" profileMenuNavIndex="3" 
+<tag:profile profileNavIndex="6" pageTitle="Account settings" profileMenuNavIndex="3" 
              profileUserId="${sessionScope.activeUser.username}" isOwnProfile="true">
     <jsp:attribute name="profileInfo">
         <div class="page-header">

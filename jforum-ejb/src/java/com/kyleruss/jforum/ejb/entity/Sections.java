@@ -8,11 +8,7 @@ package com.kyleruss.jforum.ejb.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -33,12 +29,16 @@ public class Sections  implements java.io.Serializable
      private String name;
      private String description;
      private Date createdDate;
-     private List<Categories> categorieses = new ArrayList<>();
+     private List<Categories> categorieses;
 
-    public Sections() {}
+    public Sections() 
+    {
+        categorieses    =   new ArrayList<>();
+    }
 
     public Sections(String name, String description, List<Categories> categorieses) 
     {
+       this();
        this.name            =   name;
        this.description     =   description;
        this.categorieses    =   categorieses;

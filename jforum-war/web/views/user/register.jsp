@@ -14,7 +14,6 @@
             <div class="container col-md-7 col-md-offset-3">
                 <div id="register-panel" class="panel panel-default">
                     <div class="panel-body">
-                        
                         <c:if test="${registerResult == null || !registerResult.key}">
                             <div class="page-header">
                                 <h2>Account registration
@@ -26,7 +25,6 @@
                         
                         <c:if test="${registerResult != null}">
                                 <tag:result-alert resultStatus="${registerResult.key}" resultMessage="${registerResult.value}"></tag:result-alert>
-                            </div>
                             
                             <c:if test="${registerResult.key}">
                                 <div class="row center-block">

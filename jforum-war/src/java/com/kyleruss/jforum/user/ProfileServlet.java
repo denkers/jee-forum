@@ -67,9 +67,6 @@ public class ProfileServlet extends HttpServlet
         if(path.equals("/user/profile/info"))
             getProfileInfo(request, response, ownProfile, reqUser);
         
-        else if(path.equals("/user/profile/messages"))
-            getProfileMessages(request, response);
-        
         else if(path.equals("/user/profile/friends"))
             getProfileFriends(request, response, reqUser);
         
@@ -77,6 +74,11 @@ public class ProfileServlet extends HttpServlet
             getProfileSettings(request, response, reqUser);
     }
     
+    /**
+     * Displays the info page of the user profile
+     * @param ownProfile true if user is accessing own profile
+     * @param reqUser The user entity of the accessing profile
+     */
     private void getProfileInfo(HttpServletRequest request, HttpServletResponse response, boolean ownProfile, Users reqUser) 
     throws ServletException, IOException 
     {
@@ -89,6 +91,11 @@ public class ProfileServlet extends HttpServlet
         request.getRequestDispatcher("/views/user/profile/info.jsp").forward(request, response);
     }
     
+    /**
+     * Gets the friends page of the accessing users profile
+     * Fetches the users friends and passeds them
+     * @param reqUser reqUser The user entity of the accessing profile 
+     */
     private void getProfileFriends(HttpServletRequest request, HttpServletResponse response, Users reqUser) 
     throws ServletException, IOException 
     {
@@ -97,12 +104,11 @@ public class ProfileServlet extends HttpServlet
         request.getRequestDispatcher("/views/user/profile/friends.jsp").forward(request, response);
     }
         
-    private void getProfileMessages(HttpServletRequest request, HttpServletResponse response) 
-    throws ServletException, IOException 
-    {
-        request.getRequestDispatcher("/views/user/profile/messages.jsp").forward(request, response);
-    }
-            
+    /**
+     * Gets the authenticated users settings page
+     * Redirects to error page if user is not authenticated
+     * @param reqUser reqUser The user entity of the accessing profile
+     */
     private void getProfileSettings(HttpServletRequest request, HttpServletResponse response, Users reqUser) 
     throws ServletException, IOException 
     {

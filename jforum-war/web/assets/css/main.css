@@ -1,7 +1,7 @@
 body
 {
-    padding-top:70px;
-    padding-bottom:70px;
+    padding-top:100px;
+    padding-bottom:100px;
 }
 
 #footer-nav
@@ -10,10 +10,21 @@ body
     border-top:1px solid #DDD;
 }
 
+#footer-nav h4
+{
+    margin-top:25px;
+}
+
 #head-nav .navbar-brand
 {
     margin-left:10em;
     font-size:20px;
+    min-height:65px;
+}
+
+#head-nav li a
+{
+    line-height:35px;
 }
 
 #register-panel .panel-body

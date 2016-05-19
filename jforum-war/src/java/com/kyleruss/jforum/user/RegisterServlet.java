@@ -6,7 +6,6 @@
 
 package com.kyleruss.jforum.user;
 
-import com.kyleruss.jforum.ejb.entity.Users;
 import com.kyleruss.jforum.ejb.session.entityfac.UsersFacade;
 import com.kyleruss.jforum.ejb.user.ActiveUserBean;
 import java.io.IOException;

@@ -31,6 +31,13 @@ public class ThreadsFacade extends AbstractFacade<Threads>
         return em;
     }
     
+    /**
+     * Adds the passed thread entity to the category
+     * persists the thread and updates the categories thread list
+     * @param thread The thread to be added
+     * @param category The category to add the thread in
+     * @return true if the thread was added; false otherwise
+     */
     public boolean addThread(Threads thread, Categories category)
     {
         thread.setCategories(category);

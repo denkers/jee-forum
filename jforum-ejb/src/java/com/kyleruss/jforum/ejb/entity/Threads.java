@@ -7,7 +7,6 @@
 package com.kyleruss.jforum.ejb.entity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -34,13 +33,18 @@ public class Threads  implements java.io.Serializable
      private Users users;
      private String title;
      private String content;
-     private Date dateCreated     =     new Date();  
-     private List<Posts> postses  =     new ArrayList();
+     private Date dateCreated;
+     private List<Posts> postses;
 
-    public Threads() {}
+    public Threads() 
+    {
+        postses     =   new ArrayList();
+        dateCreated =   new Date();
+    }
 	
     public Threads(Categories categories, Users users, String title, String content) 
     {
+        this();
         this.categories     =   categories;
         this.users          =   users;
         this.title          =   title;
@@ -48,6 +52,7 @@ public class Threads  implements java.io.Serializable
     }
     public Threads(Categories categories, Users users, Date dateCreated, String title, String content, List<Posts> postses)
     {
+       this();
        this.categories      =   categories;
        this.users           =   users;
        this.dateCreated     =   dateCreated;

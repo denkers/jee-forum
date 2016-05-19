@@ -27,19 +27,30 @@ public class Users  implements java.io.Serializable
      private String password;
      private String email;
      private String picture;
-     private Date registerDate;
      private Short accType;
-     private Set<Messages> messagesesForFromUser    =   new HashSet<>();
-     private Set<Posts> postses                     =   new HashSet<>();
-     private Set<Messages> messagesesForToUser      =   new HashSet<>();
-     private Set<Friends> friendsesForFriendB       =   new HashSet<>();
-     private Set<Friends> friendsesForFriendA       =   new HashSet<>();
-     private Set<Threads> threadses                 =   new HashSet<>();
+     private Set<Messages> messagesesForFromUser;
+     private Set<Posts> postses;
+     private Set<Messages> messagesesForToUser;
+     private Set<Friends> friendsesForFriendB;
+     private Set<Friends> friendsesForFriendA;
+     private Set<Threads> threadses;
+     private Date registerDate;
 
-    public Users() {}
+    public Users() 
+    {
+        messagesesForFromUser    =   new HashSet<>();
+        postses                  =   new HashSet<>();
+        messagesesForToUser      =   new HashSet<>();
+        friendsesForFriendB      =   new HashSet<>();
+        friendsesForFriendA      =   new HashSet<>();
+        threadses                =   new HashSet<>();
+        registerDate             =   new Date();
+        picture                  =   "http://i.imgur.com/N6XWLsy.png";   
+    }
 	
     public Users(String username, String password, String email)
     {
+        this();
         this.username   =   username;
         this.password   =   password;
         this.email      =   email;
@@ -48,6 +59,7 @@ public class Users  implements java.io.Serializable
     Set<Messages> messagesesForFromUser, Set<Posts> postses, Set<Messages> messagesesForToUser, 
     Set<Friends> friendsesForFriendB, Set<Friends> friendsesForFriendA, Set<Threads> threadses) 
     {
+       this(); 
        this.username                =   username;
        this.password                =   password;
        this.email                   =   email;

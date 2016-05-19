@@ -32,17 +32,22 @@ public class Categories  implements java.io.Serializable
      private String name;
      private String description;
      private Date createdDate;
-     private List<Threads> threadses = new ArrayList();
+     private List<Threads> threadses;
 
-    public Categories() {}
+    public Categories()
+    {
+        threadses  =    new ArrayList();
+    }
 	
     public Categories(Sections sections) 
     {
+        this();
         this.sections = sections;
     }
     
     public Categories(Sections sections, String name, String description, List<Threads> threadses) 
     {
+       this();
        this.sections        =   sections;
        this.name            =   name;
        this.description     =   description;
@@ -124,6 +129,11 @@ public class Categories  implements java.io.Serializable
         return threadses.size();
     }
     
+    /**
+     * Calculates the number of posts in each of its threads
+     * Gets the post count of each thread in the category
+     * @return The total number of posts in this category
+     */
     public int getNumPosts()
     {
         int postCount   =   0;

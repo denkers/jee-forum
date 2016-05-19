@@ -38,6 +38,14 @@ public class FriendsFacade extends AbstractFacade<Friends>
         return em;
     }
     
+    
+    /**
+     * Fetches the friendship that involves the users friendA and friendB
+     * The param order of friendA and friendB is not important
+     * @param friendA A user entity of a user in this friendship
+     * @param friendB A user entity of a user in this friendship
+     * @return The friendship entity that has users friendA and friendB
+     */
     public Friends getFriendship(Users friendA, Users friendB)
     {
         CriteriaBuilder builder         =   em.getCriteriaBuilder();
@@ -56,6 +64,11 @@ public class FriendsFacade extends AbstractFacade<Friends>
         }
     }
     
+    /**
+     * Fetches all the friends of the passed user
+     * @param user A Users entity whose friends you wish to fetch
+     * @return A list of friendships that the user is involved in
+     */
     public List<Friends> getUsersFriends(Users user)
     {
         CriteriaBuilder builder         =   em.getCriteriaBuilder();
@@ -67,6 +80,12 @@ public class FriendsFacade extends AbstractFacade<Friends>
         return em.createQuery(query).getResultList();
     }
     
+    /**
+     * Creates a friendship entity with Users user and friend
+     * @param user The Entity of the client/user perspective
+     * @param friend The friend the user wants to add
+     * @return An entry where key -> status and value -> a response message (error etc.)
+     */
     public Entry<Boolean, String> addFriend(Users user, Users friend)
     {
         String response;
@@ -87,7 +106,6 @@ public class FriendsFacade extends AbstractFacade<Friends>
                 Friends newFriendship   =   new Friends(user, friend);
                 create(newFriendship);
                 result      =   em.contains(newFriendship);
-                System.out.println(result);
                 response    =   result? "Successfully added friend" : "Failed to add friend";   
             }
         }
@@ -96,6 +114,11 @@ public class FriendsFacade extends AbstractFacade<Friends>
         return new SimpleEntry(result, response);
     }
     
+    /**
+     * Removes the friendship entity
+     * @param friendship The friendship entity to be removed
+     * @return An entry where key -> status and value -> a response message (error etc.)
+     */
     public Entry<Boolean, String> removeFriend(Friends friendship)
     {
         String response;

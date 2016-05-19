@@ -44,12 +44,19 @@ public class HomeServlet extends HttpServlet
         else if(path.equals("/error"))
             getError(request, response);
     }
-    
+
+    /**
+     * Displays an error page for the client
+     */
     private void getError(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.getRequestDispatcher("/views/error.jsp").forward(request, response);
     }
     
+    /**
+     * Fetches all the sections for the forum
+     * Displays the index of the application
+     */
     private void getHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         List<Sections> sections  =   sectionsBean.findAll();
