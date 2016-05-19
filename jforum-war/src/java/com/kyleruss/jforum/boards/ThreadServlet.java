@@ -128,7 +128,7 @@ public class ThreadServlet extends HttpServlet
                     boolean result  =   threadsBean.addThread(thread, category);
                     
                     if(result) 
-                        response.sendRedirect(request.getContextPath() + "/boards/category?catid=" + category.getId());
+                        response.sendRedirect(request.getContextPath() + "/boards/thread?threadid=" + thread.getId());
                     
                     else
                     {
@@ -144,7 +144,7 @@ public class ThreadServlet extends HttpServlet
                 thread.setTitle(title);
                 thread.setContent(content);
                 threadsBean.edit(thread);
-                response.sendRedirect(request.getContextPath() + "/boards/category?catid=" + category.getId());
+                response.sendRedirect(request.getContextPath() + "/boards/thread?threadid=" + thread.getId());
             }
         }
     }

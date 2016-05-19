@@ -28,7 +28,7 @@
                         
                         <form method="POST" action="${rootPath}/boards/thread/save">
                             <input type="hidden" name="thread_edit_id" value="${thread.id}" />
-                            <input type="hidden" name="thread_cat_id" value="${thread.categories.id}"/>
+                            <input type="hidden" name="thread_cat_id" value="${thread != null? thread.categories.id : catid}"/>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-tag"></span> Thread title</span>
                                 <input class="form-control" type="text" placeholder="Thread title/subject" name="thread_title" value="${thread.title}" />

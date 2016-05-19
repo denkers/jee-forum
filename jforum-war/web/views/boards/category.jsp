@@ -46,7 +46,9 @@
                                                     </c:if>
                                                         
                                                     <strong><a href="${rootPath}/boards/thread?catid=${category.id}&threadid=${thread.id}">${thread.title}</a><br></strong>
-                                                    <small>Created by <a href="#">${thread.users.username}</a></small>
+                                                    <small>Created by <a href="${rootPath}/user/profile/info?userid=${thread.users.username}">
+                                                            ${thread.users.username}</a>
+                                                    </small>
                                                 </td>
                                                 
                                                 <td class="center-table-cell">

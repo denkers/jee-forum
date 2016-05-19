@@ -77,7 +77,7 @@
                             </li>
                             
                             <li class="${navIndex == 7? "active" : ""}">
-                                <a href="<${rootPath}/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
+                                <a href="${rootPath}/user/logout"><span class="glyphicon glyphicon-share-alt"></span> Logout</a>
                             </li>
                         </c:otherwise>
                     </c:choose>
