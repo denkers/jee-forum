@@ -31,11 +31,11 @@
                             </a>
                         </c:when>
 
-                        <c:otherwise>
+                        <c:when test="${sessionScope.activeUser != null}">
                              <a href="${rootPath}/user/profile/info/friends/add?userid=${profileUser.username}" class="btn btn-default">
                                 <span class="glyphicon glyphicon-plus"></span> Add friend
                             </a>
-                        </c:otherwise>
+                        </c:when>
                     </c:choose>
                </div>
                <br><br>
