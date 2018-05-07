@@ -6,29 +6,41 @@
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
 
+JForum is a forum/message board web application developed in Java EE  
+Users can create an account, sign in and manage their own profile with JForum,  
+add and message their friends, as well as view, create and reply to threads 
+
 ## Features
-- View threads
+### View threads
+
 <img src="preview/ThreadPreview.png" />
 
-- Create threads
+### Create threads
+
 <img src="preview/ThreadCreatePreivew.png" />
 
-- View categories
+### View categories
+
 <img src="preview/CategoryPreview.png" />
 
-- Account Registration
+### Account Registration
+
 <img src="preview/RegisterPreview.png" />
 
-- User sign-in
+### User sign-in
+
 <img src="preview/LoginPreview.png" />
 
-- Display profiles
+### Display profiles
+
 <img src="preview/ProfilePreview.png" />
 
-- Add/Remove Friends
+### Add/Remove Friends
+
 <img src="preview/FriendsPreview.png" />
 
-- Change account settings
+### Change account settings
+
 <img src="preview/SettingsPreview.png" />
 
 
